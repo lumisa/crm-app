@@ -59,7 +59,7 @@ function PanelAccounts() {
 
     const onSubmit = (data) => {
         Account.create(data).then((account) => {
-            setAccounts([account, ...accounts])
+            setAccounts([...accounts, account])
         })
         .catch((error) => {
             console.error(error)
@@ -113,7 +113,7 @@ function PanelAccounts() {
                 {accounts.length > 0 ?
                     (
                     <>
-                        {filteredAccount.map((searchedAccounts, index) => 
+                        {accounts.map((searchedAccounts, index) => 
                         
                         (
                             

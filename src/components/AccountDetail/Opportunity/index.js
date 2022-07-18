@@ -35,6 +35,7 @@ const Opportunity = (props) => {
             </Row>
 
            
+            <RowInfo text= 'Id' description= {id}/>
             <RowInfo text= 'Oportunidad' description= {opportunityType}/>
             <RowInfo text= 'description' description= {description}/>
             <RowInfo text= 'Fecha cierre' description= {closingDate}/>

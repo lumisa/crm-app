@@ -15,9 +15,9 @@ export const Main = styled.div`
     display: grid;
     gap: 2rem;
     grid-template: 
-    "header header header"
-    "image panel2 panel1" 300px
-    "activity panel2 panel1" 800px / 1fr 1fr 1fr
+    "header header header header"
+    "panel0 panel2 panel3 panel1" 300px
+    "panel0 panel2 panel3 panel1" 900px / 1fr 1fr 1fr 1fr
     ;
 
 `
@@ -36,12 +36,17 @@ ${card}
 
 
 `
+export const Panel3 = styled.div`
+    grid-area: panel3;
+    ${card}
+    `
+
 export const Panel2 = styled.div`
     grid-area: panel2;
     ${card}
     `
-export const ActivityPanel = styled.div`
-    grid-area: activity;
+export const Panel0 = styled.div`
+    grid-area: panel0;
     ${card}
 `
 

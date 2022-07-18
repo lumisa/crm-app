@@ -2,13 +2,14 @@ import React, { useState, useEffect } from 'react'
 import { useParams } from "react-router-dom";
 import Account from '../../services/ServiceAccount'
 import Contact from '../../services/ServiceContact'
-import { Main, Header, ImgSpan, Panel1, Panel2, ActivityPanel, Row, Item } from  './styles'
+import { Main, Header, ImgSpan, Panel1, Panel2, Panel3, Panel0, Row, Item } from  './styles'
 import RowInfo from '../UI/RowInfo'
 import { dateFormatter } from '../../utils/date'
 import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
 import StageChip from '../UI/StageChip'
 import ActivitiesComponent from './Activities';
 import OpportunitiesComponent from './Opportunities';
+import SubvencionComponent from './Subvencion';
 
 const AccountDetail = () => {
 
@@ -146,17 +147,27 @@ const AccountDetail = () => {
                 />
 
 
+
             </Panel2>
+
+            <Panel3>
+
+                <SubvencionComponent
+                key={account.id}
+                accountId={account.id}
+                />
+
+            </Panel3>
             <ImgSpan src={account.image}/>
 
-            <ActivityPanel>
+            <Panel0>
                 <ActivitiesComponent
                     key={account.id}
                     accountId={account.id} 
                 />
 
 
-            </ActivityPanel>
+            </Panel0>
 
 
                 

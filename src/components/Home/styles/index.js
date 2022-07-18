@@ -12,7 +12,8 @@ export const Page = styled.div`
 `
 
 export const Main = styled.div`
-    padding-top: 2rem;
+    padding: 2rem;
     grid-area: main;
+
     `
 

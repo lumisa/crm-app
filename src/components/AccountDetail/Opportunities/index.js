@@ -51,7 +51,7 @@ const Opportunities = ({key, accountId}) => {
     const handleOnSubmit = (data) => {
 
         let dataX = {...data, account_id: accountId}
-        Opportunities.create(dataX).then(() => {
+        OpportunityService.create(dataX).then(() => {
             let withNew = [...opportunities];
             withNew.push(dataX)
             setOpportunities(withNew)

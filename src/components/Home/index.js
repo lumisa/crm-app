@@ -3,6 +3,7 @@ import Profile from '../Profile.js';
 import PanelAccounts from '../PanelAccounts';
 import Login from '../Login.js'
 import AccountDetail from '../AccountDetail';
+import OpportunityDetail from '../OpportunityDetail';
 import Contact from '../Contact';
 import React, { useState, useEffect } from 'react';
 import {
@@ -62,12 +63,13 @@ function Home () {
 
       <Sidebar/>
 
-      <Main className="container">
+      <Main>
         <Routes>
           <Route path="/login" element={<Login setLoggedIn={setLoggedIn}/>}/>
           <Route path="/profile" element={<Profile logout={logout} onProfileClick={onProfileClick}/>}/>
           <Route path="/" element={<PanelAccounts/>}/>
           <Route path="/account-detail/:id" element={<AccountDetail />}/>
+          <Route path="/opportunity" element={<OpportunityDetail />}/>
           <Route path="/contact" element={<Contact/>}/>
           <Route path="/parametrizable" element={<Parametrizable />}/>
 

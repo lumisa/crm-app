@@ -10,41 +10,44 @@ import HomeIcon from '@mui/icons-material/Home';
 import { Link } from 'react-router-dom';
 const Sidebar = () => {
 
+    const menuItem = [
+        {
+            name: 'Cuentas',
+            icon: <HomeIcon />,
+            link: '/',
+        },
+        {
+            name: 'Contactos',
+            icon: <PersonIcon />,
+            link: '/contact',
+        },
+        {
+            name: 'Parametrizable',
+            icon: <PersonIcon />,
+            link: '/parametrizable',
+        },
+        {
+            name: 'Oportunidades',
+            icon: <PersonIcon />,
+            link: '/opportunity',
+        }
+    ]
+
     return (
         <SidebarStyled>
             <nav>
                 <List>
-                <ListItem disablePadding>
-                    <Link to={'/'}>
-                    <ListItemButton>
-                    <ListItemIcon>
-                        <HomeIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Cuentas" />
-
-                    </ListItemButton>
-                    </Link>
-                </ListItem>
-                <ListItem disablePadding>
-                    <Link to={'/contact'}>
-                    <ListItemButton>
-                    <ListItemIcon>
-                        <PersonIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="Contactos" />
-                    </ListItemButton>
-                    </Link>
-                </ListItem>
-                <ListItem disablePadding>
-                    <Link to={'/parametrizable'}>
-                    <ListItemButton>
-                    <ListItemIcon>
-                        <PersonIcon />
-                    </ListItemIcon>
-                    <ListItemText primary="parametrizable" />
-                    </ListItemButton>
-                    </Link>
-                </ListItem>
+                    {menuItem.map((item, index) => (
+                        <ListItem disablePadding key={index}>
+                            <Link to={item.link}>
+                                <ListItemButton>
+                                    <ListItemIcon>{item.icon}</ListItemIcon>
+                                    <ListItemText primary={item.name} />
+                                </ListItemButton>
+                            </Link>
+                        </ListItem>
+                    
+                    ))}
                 </List>
             </nav>
 
