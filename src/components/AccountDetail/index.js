@@ -41,20 +41,22 @@ const AccountDetail = () => {
     }, [])
 
 
-    
-
-
     const infoBasica = [
-        {label: 'Descripción', value: account.description},
-        {label: 'Address', value: account.address},
-        {label: 'CUPS', value: account.cups_number},
-        {label: 'Consumo Anual', value: account.consumption_yearly},
-        {label: 'Representante', value: account.consumption_yearly},
-        {label: 'Comisión', value: account.consumption_yearly},
-        {label: 'Fecha de creación', value: dateFormatter(account.createdAt)},
-        {label: 'Fecha de actualización', value: dateFormatter(account.updatedAt)},
-        
+        {propertyName: 'description', label: 'Descripción', value: account.description, type: 'text', editable: true},
+        {propertyName: 'address', label: 'Address', value: account.address, type: 'text', editable: true},
+        {propertyName: 'cups_number', label: 'CUPS', value: account.cups_number, type: 'text', editable: true},
+        {propertyName: 'consumption_yearly', label: 'Consumo Anual', value: account.consumption_yearly, type: 'text', editable: true},
+        {propertyName: 'representation', label: 'Representante', value: account.representation, type: 'text', editable: true},
+        {propertyName: 'createdAt', label: 'Fecha de creación', value: dateFormatter(account.createdAt), type: 'date', editable: false},
+        {propertyName: 'updatedAt', label: 'Fecha de actualización', value: dateFormatter(account.updatedAt), type: 'date', editable: false},
     ]
+
+    const contactData = [
+        {propertyName: 'full_name', label: 'Nombre cliente', value: contact.full_name, type: 'text', editable: true},
+        {propertyName: 'phone', label: 'Teléfono', value: contact.phone, type: 'text', editable: true},
+        {propertyName: 'email', label: 'Email', value: contact.email, type: 'text', editable: true},
+    ]
+
 
     const documentacion = [
         {label: 'CIE', attached: account.CIE_file ? true : false, path: account.CIE_file},
@@ -97,14 +99,24 @@ const AccountDetail = () => {
 
                     <h2> Información básica </h2>
 
-                    {infoBasica.map((el) => <RowInfo text={el.label} description = {el.value}/>)}
+                    {infoBasica.map((el, i) => 
+                    <RowInfo
+                    key={i}
+                    propertyName={el.propertyName}
+                    label={el.label}
+                    value={el.value}
+                    type={el.type}
+                    editable={el.editable}
+                    />
+                    )}
                     
                 </Item>
 
                 <Item>
                     <h2> Documentación </h2>
 
-                    {documentacion.map((el) => <RowInfo text={el.label} description = {el.attached ? <InsertDriveFileIcon/> : null}/>)}
+{/*                     {documentacion.map((el) => 
+                    <RowInfo text={el.label} description = {el.attached ? <InsertDriveFileIcon/> : null}/>)} */}
 
 
                 </Item>
@@ -112,9 +124,17 @@ const AccountDetail = () => {
                 <Item>
                     <h2> Contacto </h2>
 
-                    <RowInfo text= 'Nombre cliente' description = {contact.full_name}/>
-                    <RowInfo text= 'Teléfono' description = {contact.phone}/>
-                    <RowInfo text= 'Email' description = {contact.email}/>
+                    {contactData.map((el, i) =>
+                    
+                    <RowInfo
+                    key={i}
+                    propertyName={el.propertyName}
+                    label={el.label}
+                    value={el.value}
+                    type={el.type}
+                    editable={el.editable}
+                    />
+                    )}
 
                     
                 </Item>

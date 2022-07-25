@@ -63,11 +63,16 @@ const Opportunities = ({key, accountId}) => {
         Opportunities.remove(id).then(() => {
             let without = opportunities.filter((opportunities) => { return opportunities.id !== id})
             setOpportunities(without)
-        }
-        ).catch((error) => {
+        }).catch((error) => {
             console.error(error)
-        }
-        )
+        })
+    }
+
+    const updateOpportunity = (id, propertyName, value) => {
+
+        //let withNew = opportunities.filter((opportunities) => { return opportunities.id == id})
+
+        OpportunityService.update(id, { [propertyName]: value.value })
     }
 
     const TextFieldEls = [
@@ -116,6 +121,7 @@ const Opportunities = ({key, accountId}) => {
                     title={opportunity.title}
                     description={opportunity.description}
                     closingDate={dateFormatter(opportunity.closing_date)}
+                    createdAt={dateFormatter(opportunity.createdAt)}
                     probability={opportunity.probability}
                     amount={opportunity.amount}
                     AddIcon={dateFormatter(opportunity.createdAt)}
@@ -123,6 +129,7 @@ const Opportunities = ({key, accountId}) => {
                     opportunityType={opportunityTypes.map((opportunityType) => opportunityType.id === opportunity.oportunity_type_id ? opportunityType.oportunity_type_description : null)}
                     stage={stages.map((stage) => stage.id === opportunity.stage_id ? stage.stage_description : null)}
                     deleteOportunity={() => deleteOportunity(opportunity.id)}
+                    updateOpportunity={(propertyName, value) => updateOpportunity(opportunity.id, propertyName, value)}
                 />
             )
 

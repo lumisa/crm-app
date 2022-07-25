@@ -37,7 +37,7 @@ const Contact = () => {
     const columns = [
         { field: 'id', headerName: 'ID', width: 90 },
         {
-          field: 'oportunity_type_description',
+          field: 'opportunity_type_description',
           headerName: 'Oportunidad',
           width: 150,
           editable: true,
