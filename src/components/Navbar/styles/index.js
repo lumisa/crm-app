@@ -2,10 +2,7 @@ import styled from "styled-components";
 
 export const Nav = styled.nav`
     width: 100%;
-    padding: 10px 20px 10px 20px;
-    background-color: #000;
     grid-area: navbar;
-    
     `
 
 export const Logo = styled.div`
