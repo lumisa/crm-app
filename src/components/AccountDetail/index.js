@@ -10,7 +10,7 @@ import StageChip from '../UI/StageChip'
 import ActivitiesComponent from './Activities';
 import OpportunitiesComponent from './Opportunities';
 import SubvencionComponent from './Subvencion';
-
+import OpportunityService from '../../services/ServiceOpportunity';
 const AccountDetail = () => {
 
     const [account, setAccount] = useState({})
@@ -64,20 +64,15 @@ const AccountDetail = () => {
         {label: 'Memoria técnica', attached: account.CIE_file ? true : false, path: account.CIE_file},
         {label: 'Factura', attached: account.CIE_file ? true : false, path: account.CIE_file},
     ]
-/* 
-    let stagesArray = []
 
-    opportunities.forEach((opportunity) => {
-        stagesArray.push(opportunity.stage_id)
-    })
+    const handleOnSubmit = (data) => {
 
-    let descriptionArray = []
+        OpportunityService.update(id, { [propertyName]: value.value })
 
-    stages.forEach((stage) => {
-        if (stagesArray.includes(stage.id)) {
-            descriptionArray.push(stage.stage_description)
-        }
-    }) */
+    }
+
+    
+
 
 
 
@@ -107,6 +102,7 @@ const AccountDetail = () => {
                     value={el.value}
                     type={el.type}
                     editable={el.editable}
+                    handleOnSubmit={(propertyName, value) => handleOnSubmit(propertyName, value)}
                     />
                     )}
                     
@@ -133,6 +129,8 @@ const AccountDetail = () => {
                     value={el.value}
                     type={el.type}
                     editable={el.editable}
+                    handleOnSubmit={(propertyName, value) => handleOnSubmit(propertyName, value)}
+
                     />
                     )}
 
