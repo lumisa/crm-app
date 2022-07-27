@@ -5,6 +5,7 @@ import Account from '../../services/ServiceAccount'
 import {Container, Header, Cards, ButtonDiv, Grid, AccountForm } from '../UI/Layout/styles'
 import Contact from '../../services/ServiceContact'
 import CreateNewForm from '../UI/CreateNewForm';
+import { DataGrid } from '@mui/x-data-grid';
 
 
 function PanelAccounts() {
@@ -13,6 +14,16 @@ function PanelAccounts() {
     const [contacts, setContacts] = useState([])
     const [resetFilter, setResetFilter] = useState(false)
     const [search, setSearch] = useState("")
+    const [view, setView] = useState('Card')
+
+    const columns = [
+        {
+            field: 'title',
+            headerName: 'Titulo',
+            width: 150,
+            editable: true,
+        },
+    ]
 
 
     useEffect(() => {
@@ -81,6 +92,8 @@ function PanelAccounts() {
     return (
         <Container>
             <Header>
+                <button onClick={() => setView('Card')}>Card</button>
+                <button onClick={() => setView('Table')}>Tabla</button>
                 <Grid>
                     <h2>Cuentas</h2>
                     <ButtonDiv>
@@ -109,34 +122,58 @@ function PanelAccounts() {
 
             </Header>
 
-            <Cards>
-                {accounts.length > 0 ?
-                    (
-                    <>
-                        {accounts.map((searchedAccounts, index) => 
-                        
-                        (
+                <Cards>
+
+                    <div 
+                    style={{display: view == 'Card' ? 'grid': 'none'}}>
+
+
+                        {accounts.length > 0 ?
+                            (
+                            <>
+                                {accounts.map((searchedAccounts, index) => 
+                                
+                                (
+                                    
+                                    <AccountCard
+                                        
+                                        key={index}
+                                        title={searchedAccounts.title}
+                                        createdAt={searchedAccounts.createdAt}
+                                        image={searchedAccounts.image}
+                                        address={searchedAccounts.address}
+                                        contactId={searchedAccounts.contact_id}
+                                        id={searchedAccounts.id}
+                                        deleteAccount={deleteAccount}
+                                    />
+
+                                )
+
+                                )}
+                            </>
                             
-                            <AccountCard
-                                key={index}
-                                title={searchedAccounts.title}
-                                createdAt={searchedAccounts.createdAt}
-                                image={searchedAccounts.image}
-                                address={searchedAccounts.address}
-                                contactId={searchedAccounts.contact_id}
-                                id={searchedAccounts.id}
-                                deleteAccount={deleteAccount}
-                            />
+                            )  : 'Loading...'
+                        
+                        }
+                    </div>
 
-                        )
+                    <div
+                    style={{display: view == 'Table' ? 'grid': 'none'}}>
 
-                        )}
-                    </>
-                    
-                    )  : 'Loading...'
-                
-                }
-            </Cards>
+                    <DataGrid
+                    rows={accounts}
+                    columns={columns}
+                    pageSize={5}
+                    rowsPerPageOptions={[5]}
+                    checkboxSelection
+                    disableSelectionOnClick
+                  />
+
+
+
+                    </div>
+                </Cards>
+
 
             <AccountForm/>
 
