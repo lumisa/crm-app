@@ -4,6 +4,7 @@ import Account from '../../services/ServiceAccount'
 import Contact from '../../services/ServiceContact'
 import { Main, Header, ImgSpan, Panel1, Panel2, Panel3, Panel0, Row, Item } from  './styles'
 import RowInfo from '../UI/RowInfo'
+import RowEditable from '../UI/RowEditable'
 import { dateFormatter } from '../../utils/date'
 import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
 import StageChip from '../UI/StageChip'
@@ -65,12 +66,33 @@ const AccountDetail = () => {
         {label: 'Factura', attached: account.CIE_file ? true : false, path: account.CIE_file},
     ]
 
-    const handleOnSubmit = (data) => {
+    // OpportunityService.update(id, { [propertyName]: value.value })
 
-        OpportunityService.update(id, { [propertyName]: value.value })
+    const handleOnSubmitAccount = (propertyName, value) => {
+
+        Account.update(account.id, {[propertyName] : value.value})
+        .then((account) => {
+            setAccount(account)
+        })
+        .catch((error) => {
+            console.error(error)
+        }
+        )
 
     }
 
+    const handleOnSubmitContact = (propertyName, value) => {
+
+        Contact.update(contact.id, {[propertyName] : value.value})
+        .then((contact) => {
+            setContact(contact)
+        })
+        .catch((error) => {
+            console.error(error)
+        }
+        )
+
+    }
     
 
 
@@ -94,15 +116,15 @@ const AccountDetail = () => {
 
                     <h2> Información básica </h2>
 
-                    {infoBasica.map((el, i) => 
-                    <RowInfo
-                    key={i}
+                    {infoBasica.map((el) => 
+                    <RowEditable
+                    key={el.propertyName}
                     propertyName={el.propertyName}
                     label={el.label}
                     value={el.value}
                     type={el.type}
                     editable={el.editable}
-                    handleOnSubmit={(propertyName, value) => handleOnSubmit(propertyName, value)}
+                    handleOnSubmit={(propertyName, value) => handleOnSubmitAccount(propertyName, value)}
                     />
                     )}
                     
@@ -120,16 +142,16 @@ const AccountDetail = () => {
                 <Item>
                     <h2> Contacto </h2>
 
-                    {contactData.map((el, i) =>
+                    {contactData.map((el) =>
                     
-                    <RowInfo
-                    key={i}
+                    <RowEditable
+                    key={el.propertyName}
                     propertyName={el.propertyName}
                     label={el.label}
                     value={el.value}
                     type={el.type}
                     editable={el.editable}
-                    handleOnSubmit={(propertyName, value) => handleOnSubmit(propertyName, value)}
+                    handleOnSubmit={(propertyName, value) => handleOnSubmitContact(propertyName, value)}
 
                     />
                     )}

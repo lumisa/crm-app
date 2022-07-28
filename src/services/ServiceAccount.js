@@ -11,6 +11,13 @@ const getAccountDetail = (id) =>
     data,
   }).then((res) => res.data);
 
+  
+  const update = (id, data) =>
+  Request(`/accounts/${id}`, {
+    method: "PATCH",
+    data,
+  }).then((res) => res.data);
+
   const remove = (id) =>
   Request(`/accounts/${id}`, {
     method: "DELETE",
@@ -21,5 +28,6 @@ export default {
     getAccount,
     getAccountDetail,
     create,
+    update,
     remove,
 }

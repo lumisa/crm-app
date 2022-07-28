@@ -1,5 +1,5 @@
 import React from 'react'
-import RowInfo from '../../UI/RowInfo'
+import RowEditable from '../../UI/RowEditable'
 import { OpItem, Row } from './styles'
 import BurgerIconDelete from '../../UI/BurgerIconDelete'
 import StageChip from '../../UI/StageChip'
@@ -23,7 +23,7 @@ const Opportunity = (props) => {
 
     const editable = [
         {propertyName: 'opportunity_type_id', label: 'Oportunidad', value: opportunityType, type: 'text', editable: true},
-        {propertyName: 'description', label: 'descripción', value: description, type: 'text', editable: false},
+        {propertyName: 'description', label: 'descripción', value: description, type: 'text', editable: true},
         {propertyName: 'closing_date', label: 'Fecha cierre', value: closingDate, type: 'date', editable: true},
         {propertyName: 'probability', label: 'Probabilidad', value: probability, type: 'number', editable: true},
         {propertyName: 'amount', label: 'Importe', value: amount, type: 'number', editable: true},
@@ -52,7 +52,7 @@ const Opportunity = (props) => {
             </Row>
 
             {editable.map(item => (
-                <RowInfo
+                <RowEditable
                 editable={item.editable}
                 label= {item.label} 
                 propertyName={item.propertyName}

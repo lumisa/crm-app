@@ -9,7 +9,7 @@ import CreateNewForm from '../../UI/CreateNewForm'
 import Stage from '../../../services/ServiceStage'
 
 
-const Opportunities = ({key, accountId}) => {
+const Opportunities = ({accountId}) => {
     const [opportunities, setOpportunities] = useState([])
     const [opportunityTypes, setOpportunityTypes] = useState([])
     const [stages, setStages] = useState([])
@@ -101,7 +101,8 @@ const Opportunities = ({key, accountId}) => {
             <Row>
                 <h2> Oportunidades </h2>
 
-                <CreateNewForm 
+                <CreateNewForm
+                key='create-opportunity'
                 boton={<AddIcon/>}
                 titulo='Crear Oportunidad'
                 TextFieldEls={TextFieldEls}
@@ -113,11 +114,12 @@ const Opportunities = ({key, accountId}) => {
             </Row>
 
 
-            {opportunities.map((opportunity, i) =>
+            {opportunities.map((opportunity) =>
 
             (
 
                 <Opportunity
+                    key={opportunity.id}
                     title={opportunity.title}
                     description={opportunity.description}
                     closingDate={dateFormatter(opportunity.closing_date)}

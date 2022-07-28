@@ -11,6 +11,13 @@ const getContactDetail = (id) =>
     data,
   }).then((res) => res.data);
 
+    
+  const update = (id, data) =>
+  Request(`/contacts/${id}`, {
+    method: "PATCH",
+    data,
+  }).then((res) => res.data);
+
   const remove = (id) =>
   Request(`/contacts/${id}`, {
     method: "DELETE",
@@ -22,5 +29,6 @@ export default {
     getContact,
     getContactDetail,
     create,
+    update,
     remove,
 }
