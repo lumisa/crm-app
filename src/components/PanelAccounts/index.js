@@ -125,7 +125,7 @@ function PanelAccounts() {
                 <Cards>
 
                     <div 
-                    style={{display: view == 'Card' ? 'grid': 'none'}}>
+                    style={{display: view == 'Card' ? 'contents': 'none'}}>
 
 
                         {accounts.length > 0 ?
@@ -158,7 +158,7 @@ function PanelAccounts() {
                     </div>
 
                     <div
-                    style={{display: view == 'Table' ? 'grid': 'none'}}>
+                    style={{display: view == 'Table' ? 'contents': 'none'}}>
 
                     <DataGrid
                     rows={accounts}

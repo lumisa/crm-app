@@ -12,6 +12,12 @@ const getOpportunityDetail = (id) =>
     data,
   }).then((res) => res.data);
 
+  const update = (id, data) =>
+  Request(`/opportunities/${id}`, {
+    method: "PATCH",
+    data,
+  }).then((res) => res.data);
+
   const remove = (id) =>
   Request(`/opportunities/${id}`, {
     method: "DELETE",
@@ -21,6 +27,7 @@ const getOpportunityDetail = (id) =>
 export default {
     getOpportunity,
     getOpportunityDetail,
+    update,
     create,
     remove,
 }

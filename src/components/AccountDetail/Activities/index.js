@@ -20,7 +20,6 @@ const ActivitiesComponent = ({ accountId }) => {
     ActivityService.getActivity()
     .then((elements) => {
         const filteredById = elements.filter((el) => { return el.account_id === accountId})
-        console.log(filteredById)
         setActivities(filteredById)
     })
     .catch((err) => {

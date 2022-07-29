@@ -9,7 +9,7 @@ import MenuItem from '@mui/material/MenuItem';
 import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
-const   CreateNewForm = ({boton, titulo, TextFieldEls, InputFileEls, SelectFieldEls, onSubmit}) => {
+const CreateNewForm = ({boton, titulo, TextFieldEls, InputFileEls, SelectFieldEls, onSubmit}) => {
 
     const [state, setState] = useState({
         top: false,
@@ -23,8 +23,6 @@ const   CreateNewForm = ({boton, titulo, TextFieldEls, InputFileEls, SelectField
     const InputNameSelectEls = SelectFieldEls.reduce((previ, current) => ({...previ, [current.name]: ''}), {})
     
     const [formInput, setFormInput] = useState({...inputNameTextFieldEls, ...InputNameFileEls, ...InputNameSelectEls })
-
-    console.log(formInput);
     
     const toggleDrawer = (anchor, open) => (event) => {
         if (
@@ -64,13 +62,14 @@ const   CreateNewForm = ({boton, titulo, TextFieldEls, InputFileEls, SelectField
 
                 
                 <TextField
-                size="small"
-                label={el.label} 
-                name={el.name} 
-                fullWidth={true} 
-                required={el.required} 
-                type={el.type ? el.type : 'text'}
-                onChange={(e) => {
+                    key={el.name}
+                    size="small"
+                    label={el.label} 
+                    name={el.name} 
+                    fullWidth={true} 
+                    required={el.required} 
+                    type={el.type ? el.type : 'text'}
+                    onChange={(e) => {
                     setFormInput({...formInput, [e.target.name]: e.target.value})
                 }}
                 />
@@ -81,7 +80,7 @@ const   CreateNewForm = ({boton, titulo, TextFieldEls, InputFileEls, SelectField
 
             {SelectFieldEls.map(el => (
 
-            <>
+            <div key={el.name}>
                 <InputLabel>{el.label}</InputLabel>
                 <Select
                     size="small"
@@ -100,7 +99,7 @@ const   CreateNewForm = ({boton, titulo, TextFieldEls, InputFileEls, SelectField
                 </Select>
                 
 
-            </>
+            </div>
 
 
             )
