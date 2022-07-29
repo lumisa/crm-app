@@ -8,7 +8,6 @@ import RowInfo from '../../UI/RowInfo'
 import BurgerIconDelete from '../../UI/BurgerIconDelete'
 function AccountCard(props) {
 
-    const [contact, setContact] = useState({})
 
     const {
         key,
@@ -22,16 +21,10 @@ function AccountCard(props) {
         address,
     } = props
 
-    useEffect(() => {
-        Contact.getContactDetail(contactId).then(contact => {
-            setContact(contact)
-        })
-    }, [])
 
     const info = [
         {label: 'Creado', value: dateFormatter(createdAt)},
         {label: 'Dirección', value: address},
-        {label: 'Cliente', value: contact.full_name},
     ]
 
 

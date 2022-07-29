@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import Box from '@mui/material/Box';
 import {Container, Header, Body, ButtonDiv, Grid } from '../UI/Layout/styles'
 import ServiceOpportunity from '../../services/ServiceOpportunity';
 import { DataGrid } from '@mui/x-data-grid';
@@ -29,26 +30,36 @@ const OpportunityDetail = () => {
     ]
 
     const columns = [
-        { field: 'id', headerName: 'ID', width: 90 },
+        { 
+          field: 'id', 
+          headerName: 'ID', 
+          width: 90,
+          editable: false,
+          resizable: true
+        },
         {
           field: 'title',
           headerName: 'Titulo',
           editable: true,
+          width: 200,
         },
         {
           field: 'description',
           headerName: 'description',
           editable: true,
+          width: 200,
         },
         {
           field: 'source',
           headerName: 'source',
           editable: true,
+          width: 150,
         },
         {
           field: 'closing_date',
           headerName: 'closing_date',
           editable: true,
+          width: 150,
         },
         {
           field: 'probability',
@@ -64,11 +75,13 @@ const OpportunityDetail = () => {
           field: 'account_id',
           headerName: 'account_id',
           editable: true,
+          width: 150,
         },
         {
           field: 'stage_id',
           headerName: 'stage_id',
           editable: true,
+          width: 150,
         },
       ];
           
@@ -98,11 +111,14 @@ const OpportunityDetail = () => {
         </Header>
 
         <Body>
+        <Box sx={{ height: 800, width: '100%' }}>
         <DataGrid
             rows={opportunity}
             columns={columns}
             disableSelectionOnClick
+            pageSize={30}
         />
+        </Box>
         </Body>
 
     </Container>

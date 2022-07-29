@@ -60,7 +60,7 @@ const Opportunities = ({accountId}) => {
     }
 
     const deleteOportunity = (id) => {
-        Opportunities.remove(id).then(() => {
+        OpportunityService.remove(id).then(() => {
             let without = opportunities.filter((opportunities) => { return opportunities.id !== id})
             setOpportunities(without)
         }).catch((error) => {
@@ -89,7 +89,7 @@ const Opportunities = ({accountId}) => {
     ]
     
     const SelectFieldEls  = [
-        {label: 'Tipo oportunidad', name: 'opportunity_type_id', required: true, options: opportunityTypes.map((opportunityType) => {return {value: opportunityType.id, label: opportunityType.oportunity_type_description}})},
+        {label: 'Tipo oportunidad', name: 'opportunity_type_id', required: true, options: opportunityTypes.map((opportunityType) => {return {value: opportunityType.id, label: opportunityType.opportunity_type_description}})},
         {label: 'Estado', name: 'stage_id', required: true, options: stages.map((stage) => ({value: stage.id, label: stage.stage_description}))},
     ]
 
@@ -122,14 +122,15 @@ const Opportunities = ({accountId}) => {
                     key={opportunity.id}
                     title={opportunity.title}
                     description={opportunity.description}
-                    closingDate={dateFormatter(opportunity.closing_date)}
-                    createdAt={dateFormatter(opportunity.createdAt)}
+                    closingDate={opportunity.closing_date}
+                    createdAt={opportunity.createdAt}
                     probability={opportunity.probability}
                     amount={opportunity.amount}
                     AddIcon={dateFormatter(opportunity.createdAt)}
                     id={opportunity.id}
                     opportunityType={opportunityTypes.map((opportunityType) => opportunityType.id === opportunity.oportunity_type_id ? opportunityType.oportunity_type_description : null)}
                     stage={stages.map((stage) => stage.id === opportunity.stage_id ? stage.stage_description : null)}
+                    stages={stages}
                     deleteOportunity={() => deleteOportunity(opportunity.id)}
                     updateOpportunity={(propertyName, value) => updateOpportunity(opportunity.id, propertyName, value)}
                 />

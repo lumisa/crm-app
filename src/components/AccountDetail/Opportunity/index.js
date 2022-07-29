@@ -15,6 +15,7 @@ const Opportunity = (props) => {
         createdAt,
         id,
         stage,
+        stages,
         key,
         deleteOportunity,
         opportunityType,
@@ -46,7 +47,7 @@ const Opportunity = (props) => {
             <Row>
                 <h3>{title}</h3>
 
-                <StageChip text={stage} />
+                <StageChip text={stage} options={stages}/>
 
                 <BurgerIconDelete deleteItem={deleteOportunity}/>
             </Row>
