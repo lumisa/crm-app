@@ -1,17 +1,16 @@
 import axios from 'axios';
 import { getStorageToken } from './helpers';
 
-//const API = 'https://express-crm.herokuapp.com/api';
-const API = 'http://localhost:8000/api';
+const API = 'https://express-crm.herokuapp.com/api';
+//const API = 'http://localhost:8000/api';
 // 'http://localhost:8080';
 
-const RequestForm = (url, { method = 'GET', data = {} } = {}) => {
+const RequestForm = (url, { method = 'GET', file = {} } = {}) => {
   const token = getStorageToken();
   const formData = new FormData();
+  console.log(file)
 
-  for ( let key in data ) {
-    formData.append(key, data[key]);
-}
+  formData.append('CIE_file', file);
 
   const auth = token ? { Authorization: `Bearer ${token}` } : {};
   return axios({
@@ -24,7 +23,7 @@ const RequestForm = (url, { method = 'GET', data = {} } = {}) => {
       "Content-Type": "multipart/form-data",
       ...auth,
     },
-    data: formData,
+    formData,
   })
     .then((res) => res)
     .catch((err) => {

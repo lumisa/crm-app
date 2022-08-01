@@ -42,7 +42,7 @@ const Opportunity = (props) => {
 
     return (
 
-        <OpItem id={key}>
+        <OpItem key={key}>
 
             <Row>
                 <h3>{title}</h3>

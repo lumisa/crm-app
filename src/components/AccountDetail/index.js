@@ -134,6 +134,7 @@ const AccountDetail = () => {
                     
                     <Documentacion
                     key={el.propertyName}
+                    accountId={id}
                     propertyName={el.propertyName}
                     label={el.label}
                     attached={el.attached}

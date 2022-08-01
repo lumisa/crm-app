@@ -98,7 +98,7 @@ const Opportunities = ({accountId}) => {
         <>
 
         
-            <Row>
+            <Row key={accountId}>
                 <h2> Oportunidades </h2>
 
                 <CreateNewForm
