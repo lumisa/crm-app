@@ -1,8 +1,8 @@
 import axios from 'axios';
 import { getStorageToken } from './helpers';
 
-//const API = 'https://express-crm.herokuapp.com/api';
-const API = 'http://localhost:8000/api';
+const API = 'https://express-crm.herokuapp.com/api';
+//const API = 'http://localhost:8000/api';
 
 const RequestForm = (url, { method = 'GET', formData = {} } = {}) => {
   const token = getStorageToken();
