@@ -2,9 +2,10 @@ import React, {useState, useEffect } from 'react';
 import AccountCard from './AccountCard'
 import SearchBar from '../SearchBar';
 import Account from '../../services/ServiceAccount'
-import {Container, Header, Cards, ButtonDiv, Grid, AccountForm } from '../UI/Layout/styles'
+import {Container, Header, Cards, ButtonDiv, Grid, AccountForm, Table } from '../UI/Layout/styles'
 import CreateNewForm from '../UI/CreateNewForm';
 import { DataGrid } from '@mui/x-data-grid';
+import Box from '@mui/material/Box';
 
 
 function PanelAccounts() {
@@ -18,7 +19,37 @@ function PanelAccounts() {
         {
             field: 'title',
             headerName: 'Titulo',
-            width: 150,
+            width: 200,
+            editable: true,
+        },
+        {
+            field: 'description',
+            headerName: 'Descripción',
+            width: 200,
+            editable: true,
+        },
+        {
+            field: 'address',
+            headerName: 'Dirección completa',
+            width: 350,
+            editable: true,
+        },
+        {
+            field: 'representation',
+            headerName: 'Representación',
+            width: 200,
+            editable: true,
+        },
+        {
+            field: 'activity_description',
+            headerName: 'Actividad',
+            width: 200,
+            editable: true,
+        },
+        {
+            field: 'commission',
+            headerName: 'Comisión',
+            width: 200,
             editable: true,
         },
     ]
@@ -123,10 +154,10 @@ function PanelAccounts() {
                     style={{display: view == 'Card' ? 'contents': 'none'}}>
 
 
-                        {accounts.length > 0 ?
+                        {filteredAccount.length > 0 ?
                             (
                             <>
-                                {accounts.map((searchedAccounts, index) => 
+                                {filteredAccount.map((searchedAccounts, index) => 
                                 
                                 (
                                     
@@ -152,22 +183,31 @@ function PanelAccounts() {
                         }
                     </div>
 
+                </Cards>
+
+                <Table>
+
                     <div
                     style={{display: view == 'Table' ? 'contents': 'none'}}>
 
-                    <DataGrid
-                    rows={accounts}
-                    columns={columns}
-                    pageSize={5}
-                    rowsPerPageOptions={[5]}
-                    checkboxSelection
-                    disableSelectionOnClick
-                  />
+                        <Box sx={{ height: 800, width: '100%' }}>
+
+                            <DataGrid
+                            rows={filteredAccount}
+                            columns={columns}
+                            pageSize={10}
+                            rowsPerPageOptions={[5]}
+                            checkboxSelection
+                            disableSelectionOnClick
+                        />
+
+                        </Box>
 
 
 
                     </div>
-                </Cards>
+
+                </Table>
 
 
             <AccountForm/>

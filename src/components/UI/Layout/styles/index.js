@@ -23,6 +23,11 @@ const Cards = styled.div`
     grid-auto-rows:25rem;
     grid-template-columns: repeat(auto-fill, minmax(min(100%, 25rem), 1fr));
 `
+const Table = styled.div`
+    display: block;
+    grid-area: cards;
+    gap: 1rem;
+`
 
 const Body = styled.div`
     display: block;
@@ -53,4 +58,4 @@ const AccountForm = styled.div`
     z-index: 50;
 `
 
-export { Container, Header, Cards, ButtonDiv, Grid, AccountForm, Body }
+export { Container, Header, Cards, ButtonDiv, Grid, AccountForm, Body, Table }
