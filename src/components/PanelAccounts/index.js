@@ -52,10 +52,10 @@ function PanelAccounts() {
     ]
     
     const InputFileEls = [
-        {label: 'Imagen', name: 'imagen', required: false},
+/*         {label: 'Imagen', name: 'imagen', required: false},
         {label: 'Proyecto técnico', name: 'project_file', required: false},
         {label: 'Memoria técnica', name: 'memoria_file', required: false},
-    ]
+ */    ]
     
     const SelectFieldEls  = [
 /*         {label: 'Cliente', name: 'contact_id', required: true, options: contacts.map((contact) => {return {value: contact.id, label: contact.full_name}})},

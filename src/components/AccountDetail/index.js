@@ -45,6 +45,10 @@ const AccountDetail = () => {
         {propertyName: 'cups_number', label: 'CUPS', value: account.cups_number, type: 'text', editable: true},
         {propertyName: 'consumption_yearly', label: 'Consumo Anual', value: account.consumption_yearly, type: 'text', editable: true},
         {propertyName: 'representation', label: 'Representante', value: account.representation, type: 'text', editable: true},
+        {propertyName: 'activity_description', label: 'Actividad', value: account.activity_description, type: 'text', editable: true},
+        {propertyName: 'comission_percentage', label: 'Comisión', value: account.comission_percentage, type: 'number', editable: true},
+        {propertyName: 'referencia_catastral', label: 'Referencia Catastral', value: account.referencia_catastral, type: 'text', editable: true},
+        {propertyName: 'tension', label: 'Tensión', value: account.tension, type: 'text', editable: true},
         {propertyName: 'createdAt', label: 'Fecha de creación', value: account.createdAt, type: 'date', editable: false},
         {propertyName: 'updatedAt', label: 'Fecha de actualización', value: account.updatedAt, type: 'date', editable: false},
     ]
@@ -57,10 +61,10 @@ const AccountDetail = () => {
 
 
     const documentacion = [
-        {propertyName: '', label: 'CIE', attached: true, path: 'https://res.cloudinary.com/dadjy9f1q/image/upload/v1658308235/cld-sample-2.jpg'},
-        {propertyName: '', label: 'Proyecto técnico', attached: true, path: 'https://res.cloudinary.com/dadjy9f1q/image/upload/v1658308235/cld-sample-2.jpg'},
-        {propertyName: '', label: 'Memoria técnica', attached: true, path: 'https://res.cloudinary.com/dadjy9f1q/image/upload/v1658308235/cld-sample-2.jpg'},
-        {propertyName: 'CIE_file', label: 'Factura', attached: account.CIE_file ? true : false, path: account.CIE_file},
+        {propertyName: 'CIE_file', label: 'CIE', attached: account.CIE_file ? true : false, path: account.CIE_file},
+        {propertyName: 'project_file', label: 'Proyecto técnico', attached: account.project_file ? true : false, path: account.project_file},
+        {propertyName: 'memoria_file', label: 'Memoria técnica', attached: account.memoria_file ? true : false, path: account.memoria_file},
+        {propertyName: 'factura_file', label: 'Factura', attached: account.factura_file ? true : false, path: account.factura_file},
     ]
 
     // OpportunityService.update(id, { [propertyName]: value.value })
