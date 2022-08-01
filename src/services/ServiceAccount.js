@@ -17,6 +17,12 @@ const getAccountDetail = (id) =>
     method: "PATCH",
     data,
   }).then((res) => res.data);
+  
+  const updateFile = (id, file) =>
+  RequestForm(`/accounts/${id}`, {
+    method: "PATCH",
+    file,
+  }).then((res) => res.data);
 
   const remove = (id) =>
   Request(`/accounts/${id}`, {
@@ -29,5 +35,6 @@ export default {
     getAccountDetail,
     create,
     update,
+    updateFile,
     remove,
 }

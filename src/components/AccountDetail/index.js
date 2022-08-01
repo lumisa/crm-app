@@ -3,15 +3,12 @@ import { useParams } from "react-router-dom";
 import Account from '../../services/ServiceAccount'
 import Contact from '../../services/ServiceContact'
 import { Main, Header, ImgSpan, Panel1, Panel2, Panel3, Panel0, Row, Item } from  './styles'
-import RowInfo from '../UI/RowInfo'
 import RowEditable from '../UI/RowEditable'
-import { dateFormatter } from '../../utils/date'
-import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
-import StageChip from '../UI/StageChip'
 import ActivitiesComponent from './Activities';
 import OpportunitiesComponent from './Opportunities';
 import SubvencionComponent from './Subvencion';
-import OpportunityService from '../../services/ServiceOpportunity';
+import Documentacion from './Documentacion'
+
 const AccountDetail = () => {
 
     const [account, setAccount] = useState({})
@@ -48,8 +45,8 @@ const AccountDetail = () => {
         {propertyName: 'cups_number', label: 'CUPS', value: account.cups_number, type: 'text', editable: true},
         {propertyName: 'consumption_yearly', label: 'Consumo Anual', value: account.consumption_yearly, type: 'text', editable: true},
         {propertyName: 'representation', label: 'Representante', value: account.representation, type: 'text', editable: true},
-        {propertyName: 'createdAt', label: 'Fecha de creación', value: dateFormatter(account.createdAt), type: 'date', editable: false},
-        {propertyName: 'updatedAt', label: 'Fecha de actualización', value: dateFormatter(account.updatedAt), type: 'date', editable: false},
+        {propertyName: 'createdAt', label: 'Fecha de creación', value: account.createdAt, type: 'date', editable: false},
+        {propertyName: 'updatedAt', label: 'Fecha de actualización', value: account.updatedAt, type: 'date', editable: false},
     ]
 
     const contactData = [
@@ -60,10 +57,10 @@ const AccountDetail = () => {
 
 
     const documentacion = [
-        {label: 'CIE', attached: account.CIE_file ? true : false, path: account.CIE_file},
-        {label: 'Proyecto técnico', attached: account.CIE_file ? true : false, path: account.CIE_file},
-        {label: 'Memoria técnica', attached: account.CIE_file ? true : false, path: account.CIE_file},
-        {label: 'Factura', attached: account.CIE_file ? true : false, path: account.CIE_file},
+        {propertyName: '', label: 'CIE', attached: true, path: 'https://res.cloudinary.com/dadjy9f1q/image/upload/v1658308235/cld-sample-2.jpg'},
+        {propertyName: '', label: 'Proyecto técnico', attached: true, path: 'https://res.cloudinary.com/dadjy9f1q/image/upload/v1658308235/cld-sample-2.jpg'},
+        {propertyName: '', label: 'Memoria técnica', attached: true, path: 'https://res.cloudinary.com/dadjy9f1q/image/upload/v1658308235/cld-sample-2.jpg'},
+        {propertyName: 'CIE_file', label: 'Factura', attached: account.CIE_file ? true : false, path: account.CIE_file},
     ]
 
     // OpportunityService.update(id, { [propertyName]: value.value })
@@ -133,8 +130,20 @@ const AccountDetail = () => {
                 <Item>
                     <h2> Documentación </h2>
 
-{/*                     {documentacion.map((el) => 
-                    <RowInfo text={el.label} description = {el.attached ? <InsertDriveFileIcon/> : null}/>)} */}
+                    {documentacion.map((el) => 
+                    
+                    <Documentacion
+                    key={el.propertyName}
+                    accountId={id}
+                    propertyName={el.propertyName}
+                    label={el.label}
+                    attached={el.attached}
+                    path={el.path}
+                                        
+                    />
+                
+                
+                )}
 
 
                 </Item>

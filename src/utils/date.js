@@ -8,5 +8,10 @@ export function dateFormatter(date) {
     };
   
     return date.toLocaleDateString('es-ES', options);
-  }
+}
+
+export function dateHtml(date) {
+  
+    return date.split('T')[0];
+}
   

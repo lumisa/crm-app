@@ -3,7 +3,6 @@ import AccountCard from './AccountCard'
 import SearchBar from '../SearchBar';
 import Account from '../../services/ServiceAccount'
 import {Container, Header, Cards, ButtonDiv, Grid, AccountForm } from '../UI/Layout/styles'
-import Contact from '../../services/ServiceContact'
 import CreateNewForm from '../UI/CreateNewForm';
 import { DataGrid } from '@mui/x-data-grid';
 
@@ -11,7 +10,6 @@ import { DataGrid } from '@mui/x-data-grid';
 function PanelAccounts() {
 
     const [accounts, setAccounts] = useState([])
-    const [contacts, setContacts] = useState([])
     const [resetFilter, setResetFilter] = useState(false)
     const [search, setSearch] = useState("")
     const [view, setView] = useState('Card')
@@ -30,9 +28,6 @@ function PanelAccounts() {
         Account.getAccount().then((accounts) =>{ 
             setAccounts(accounts)
         
-        })
-        Contact.getContact().then((contacts) =>{
-            setContacts(contacts)
         })
 
     }, [])
@@ -63,9 +58,9 @@ function PanelAccounts() {
     ]
     
     const SelectFieldEls  = [
-        {label: 'Cliente', name: 'contact_id', required: true, options: contacts.map((contact) => {return {value: contact.id, label: contact.full_name}})},
+/*         {label: 'Cliente', name: 'contact_id', required: true, options: contacts.map((contact) => {return {value: contact.id, label: contact.full_name}})},
         {label: 'Tipo Autoconsumo', name: 'autoconsumo_type_id', required: true, options: contacts.map((contact) => {return {value: contact.id, label: contact.full_name}})},
-    ]
+ */    ]
 
 
     const onSubmit = (data) => {
