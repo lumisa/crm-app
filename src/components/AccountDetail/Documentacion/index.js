@@ -29,15 +29,16 @@ const Documentacion = ({accountId, attached, path, label, propertyName}) => {
     const handleClose = () => setOpen(false);
     const ref = useRef();
 
-    console.log(accountId);
-    
     
     const handleSubmit = (event) => {
         const files = Array.from(event.target.files);
         const [file] = files;
-        console.log(file);
+        const formData = new FormData();
+        
+        formData.append(event.target.name, file);
+            
 
-        AccountService.updateFile(accountId, file).then(res => {
+        AccountService.updateFile(accountId, formData).then(res => {
             console.log(res);
             handleClose();
         }

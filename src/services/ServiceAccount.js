@@ -18,10 +18,10 @@ const getAccountDetail = (id) =>
     data,
   }).then((res) => res.data);
   
-  const updateFile = (id, file) =>
+  const updateFile = (id, formData) =>
   RequestForm(`/accounts/${id}`, {
     method: "PATCH",
-    file,
+    formData,
   }).then((res) => res.data);
 
   const remove = (id) =>
