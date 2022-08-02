@@ -8,6 +8,7 @@ import ActivitiesComponent from './Activities';
 import OpportunitiesComponent from './Opportunities';
 import SubvencionComponent from './Subvencion';
 import Documentacion from './Documentacion'
+import ImageComponent from './ImageComponent'
 
 const AccountDetail = () => {
 
@@ -211,8 +212,8 @@ const AccountDetail = () => {
                 />
 
             </Panel3>
-            <ImgSpan src={account.image}/>
 
+            <ImageComponent src={account.image} accountId={account.id}/>
             <Panel0>
                 <ActivitiesComponent
                     key={account.id}

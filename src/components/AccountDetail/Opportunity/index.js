@@ -23,7 +23,7 @@ const Opportunity = (props) => {
     } = props
 
     const editable = [
-        {propertyName: 'opportunity_type_id', label: 'Oportunidad', value: opportunityType, type: 'text', editable: true},
+        {propertyName: 'opportunity_type_id', label: 'Oportunidad', value: opportunityType, type: 'text', editable: false},
         {propertyName: 'description', label: 'descripción', value: description, type: 'text', editable: true},
         {propertyName: 'closing_date', label: 'Fecha cierre', value: closingDate, type: 'date', editable: true},
         {propertyName: 'probability', label: 'Probabilidad', value: probability, type: 'number', editable: true},

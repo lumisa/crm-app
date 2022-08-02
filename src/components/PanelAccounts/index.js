@@ -6,7 +6,8 @@ import {Container, Header, Cards, ButtonDiv, Grid, AccountForm, Table } from '..
 import CreateNewForm from '../UI/CreateNewForm';
 import { DataGrid } from '@mui/x-data-grid';
 import Box from '@mui/material/Box';
-
+import ButtonGroup from '@mui/material/ButtonGroup';
+import Button from '@mui/material/Button';
 
 function PanelAccounts() {
 
@@ -118,10 +119,14 @@ function PanelAccounts() {
     return (
         <Container>
             <Header>
-                <button onClick={() => setView('Card')}>Card</button>
-                <button onClick={() => setView('Table')}>Tabla</button>
+                
                 <Grid>
                     <h2>Cuentas</h2>
+
+                    <ButtonGroup disableElevation variant="contained">
+                        <Button onClick={() => setView('Card')}>Vista Card</Button>
+                        <Button onClick={() => setView('Table')}>Vista Tabla</Button>
+                    </ButtonGroup>
                     <ButtonDiv>
 
                         <CreateNewForm
@@ -148,22 +153,20 @@ function PanelAccounts() {
 
             </Header>
 
-                <Cards>
+                {view == 'Card' && <Cards>
 
-                    <div 
-                    style={{display: view == 'Card' ? 'contents': 'none'}}>
 
 
                         {filteredAccount.length > 0 ?
                             (
                             <>
-                                {filteredAccount.map((searchedAccounts, index) => 
+                                {filteredAccount.map((searchedAccounts) => 
                                 
                                 (
                                     
                                     <AccountCard
                                         
-                                        key={index}
+                                        key={searchedAccounts.id}
                                         title={searchedAccounts.title}
                                         createdAt={searchedAccounts.createdAt}
                                         image={searchedAccounts.image}
@@ -181,14 +184,12 @@ function PanelAccounts() {
                             )  : 'Loading...'
                         
                         }
-                    </div>
 
-                </Cards>
+                </Cards>}
 
-                <Table>
+{    view == 'Table' &&            <Table>
 
-                    <div
-                    style={{display: view == 'Table' ? 'contents': 'none'}}>
+                    <div>
 
                         <Box sx={{ height: 800, width: '100%' }}>
 
@@ -207,7 +208,7 @@ function PanelAccounts() {
 
                     </div>
 
-                </Table>
+                </Table>}
 
 
             <AccountForm/>

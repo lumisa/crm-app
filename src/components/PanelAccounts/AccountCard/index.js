@@ -10,7 +10,6 @@ function AccountCard(props) {
 
 
     const {
-        key,
         image, 
         title, 
         description,  

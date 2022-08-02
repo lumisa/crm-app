@@ -44,7 +44,7 @@ const ButtonDiv = styled.div`
 
 const Grid = styled.div`
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     justify-content: space-between;
 
 

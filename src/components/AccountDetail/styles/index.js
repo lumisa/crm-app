@@ -16,7 +16,7 @@ export const Main = styled.div`
     gap: 2rem;
     grid-template: 
     "header header header header"
-    "panel0 panel2 panel3 panel1" 300px
+    "image panel2 panel3 panel1" 300px
     "panel0 panel2 panel3 panel1" 900px / 1fr 1fr 1fr 1fr
     ;
 
@@ -50,11 +50,15 @@ export const Panel0 = styled.div`
     ${card}
 `
 
-export const ImgSpan = styled.span`
+export const ImageStyleDiv = styled.div`
     grid-area: image;
+    ${card}
+`
+export const ImgSpan = styled.span`
+    height: 100%;
+    display: block;
     background-position: center;
     background-size: cover;
-    ${card}
 ${({src}) => `background-image: url(${src});`}
 
 `
