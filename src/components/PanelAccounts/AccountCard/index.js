@@ -12,7 +12,8 @@ function AccountCard(props) {
     const {
         image, 
         title, 
-        description,  
+        description,
+        representation,
         createdAt, 
         id,
         contactId,
@@ -24,6 +25,7 @@ function AccountCard(props) {
     const info = [
         {label: 'Creado', value: dateFormatter(createdAt)},
         {label: 'Dirección', value: address},
+        {label: 'Representante', value: representation},
     ]
 
 

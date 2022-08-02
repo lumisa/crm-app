@@ -2,11 +2,10 @@ import React, { useState, useEffect } from 'react'
 import { useParams } from "react-router-dom";
 import Account from '../../services/ServiceAccount'
 import Contact from '../../services/ServiceContact'
-import { Main, Header, ImgSpan, Panel1, Panel2, Panel3, Panel0, Row, Item } from  './styles'
+import { Main, Header, Panel1, Panel2, Panel3, Panel0, Row, Item } from  './styles'
 import RowEditable from '../UI/RowEditable'
 import ActivitiesComponent from './Activities';
 import OpportunitiesComponent from './Opportunities';
-import SubvencionComponent from './Subvencion';
 import Documentacion from './Documentacion'
 import ImageComponent from './ImageComponent'
 
@@ -204,14 +203,6 @@ const AccountDetail = () => {
 
             </Panel2>
 
-            <Panel3>
-
-                <SubvencionComponent
-                key={account.id}
-                accountId={account.id}
-                />
-
-            </Panel3>
 
             <ImageComponent src={account.image} accountId={account.id}/>
             <Panel0>

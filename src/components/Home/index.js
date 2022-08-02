@@ -3,6 +3,7 @@ import Profile from '../Profile.js';
 import PanelAccounts from '../PanelAccounts';
 import Login from '../Login.js'
 import AccountDetail from '../AccountDetail';
+import OpportunityList from '../OpportunityList';
 import OpportunityDetail from '../OpportunityDetail';
 import Contact from '../Contact';
 import React, { useState, useEffect } from 'react';
@@ -69,7 +70,8 @@ function Home () {
           <Route path="/profile" element={<Profile logout={logout} onProfileClick={onProfileClick}/>}/>
           <Route path="/" element={<PanelAccounts/>}/>
           <Route path="/account-detail/:id" element={<AccountDetail />}/>
-          <Route path="/opportunity" element={<OpportunityDetail />}/>
+          <Route path="/opportunity-detail/:id" element={<OpportunityDetail />}/>
+          <Route path="/opportunity" element={<OpportunityList />}/>
           <Route path="/contact" element={<Contact/>}/>
           <Route path="/parametrizable" element={<Parametrizable />}/>
 

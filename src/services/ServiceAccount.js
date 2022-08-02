@@ -6,7 +6,7 @@ const getAccountDetail = (id) =>
   Request(`/accounts/${id}`).then((res) => res.data);
 
   const create = (data) =>
-  RequestForm(`/accounts`, {
+  Request(`/accounts`, {
     method: "POST",
     data,
   }).then((res) => res.data);

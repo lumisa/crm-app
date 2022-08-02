@@ -6,10 +6,18 @@ import Input from '@mui/material/Input';
 import InputLabel from '@mui/material/InputLabel';
 import Box from '@mui/material/Box';
 import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
 import Select from '@mui/material/Select';
 
-const CreateNewForm = ({boton, titulo, TextFieldEls, InputFileEls, SelectFieldEls, onSubmit}) => {
+const CreateNewForm = (
+    {
+        boton, 
+        titulo, 
+        TextFieldEls, 
+        InputFileEls, 
+        SelectFieldEls, 
+        onSubmit
+    
+    }) => {
 
     const [state, setState] = useState({
         top: false,
@@ -62,7 +70,7 @@ const CreateNewForm = ({boton, titulo, TextFieldEls, InputFileEls, SelectFieldEl
 
                 
                 <TextField
-                    key={el.name}
+                    key={`${el.name}`}
                     size="small"
                     label={el.label} 
                     name={el.name} 
@@ -93,8 +101,8 @@ const CreateNewForm = ({boton, titulo, TextFieldEls, InputFileEls, SelectFieldEl
                         setFormInput({...formInput, [e.target.name]: e.target.value})
                     }}
                     >
-                    {el.options.map(option => (
-                        <MenuItem value={option.value}>{option.label}</MenuItem>
+                    {el.options.map((option, i) => (
+                        <MenuItem key={i} value={option.value}>{option.label}</MenuItem>
                     ))}
                 </Select>
                 
