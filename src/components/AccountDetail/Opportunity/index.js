@@ -3,7 +3,7 @@ import RowEditable from '../../UI/RowEditable'
 import { OpItem, Row } from './styles'
 import BurgerIconDelete from '../../UI/BurgerIconDelete'
 import StageChip from '../../UI/StageChip'
-
+import { Link } from 'react-router-dom'
 const Opportunity = (props) => {
 
     const {
@@ -14,9 +14,8 @@ const Opportunity = (props) => {
         amount,
         createdAt,
         id,
-        stage,
+        stageId,
         stages,
-        key,
         deleteOportunity,
         opportunityType,
         updateOpportunity,
@@ -32,28 +31,31 @@ const Opportunity = (props) => {
     ]
 
     const handleOnSubmit = (propertyName, value) => {
-
-
         updateOpportunity(propertyName, value)
-
     }
 
 
 
     return (
 
-        <OpItem key={key}>
+        <OpItem>
 
             <Row>
-                <h3>{title}</h3>
+                <h3>{<Link to={`/opportunity-detail/${id}`}>{title}</Link>}</h3>
 
-                <StageChip text={stage} options={stages}/>
+                <StageChip 
+                stageId={stageId} 
+                options={stages}
+                propertyName='stage_id'
+                handleOnSubmit={(propertyName, value) => handleOnSubmit(propertyName, value)}
+                />
 
                 <BurgerIconDelete deleteItem={deleteOportunity}/>
             </Row>
 
-            {editable.map(item => (
+            {editable.map((item, i) => (
                 <RowEditable
+                key={`opportunity-editable` + i}
                 editable={item.editable}
                 label= {item.label} 
                 propertyName={item.propertyName}

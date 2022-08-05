@@ -8,7 +8,6 @@ const Activity = (props) => {
         comment,
         createdAt,
         updatedAt,
-        key,
 
     } = props
 

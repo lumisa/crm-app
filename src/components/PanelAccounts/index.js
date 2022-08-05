@@ -70,9 +70,9 @@ function PanelAccounts() {
 
 
     const TextFieldEls = [
-        {label: 'Titulo', name: 'title', required: true},
-        {label: 'Descripción', name: 'description', required: true},
-        {label: 'Dirección completa', name: 'address', required: true},
+        {label: 'Nombre del titular', name: 'title', required: true},
+        {label: 'Descripción', name: 'description', required: false},
+        {label: 'Dirección completa', name: 'address', required: false},
         {label: 'CUPS', name: 'cups_number', required: false},
         {label: 'Tension', name: 'tension', required: false},
         {label: 'Representación', name: 'representation', required: false},
@@ -166,7 +166,8 @@ function PanelAccounts() {
                                     
                                     <AccountCard
                                         
-                                        key={searchedAccounts.id}
+                                        key={`account-${searchedAccounts.id}`}
+                                        representation={searchedAccounts.representation}
                                         title={searchedAccounts.title}
                                         createdAt={searchedAccounts.createdAt}
                                         image={searchedAccounts.image}
@@ -187,28 +188,29 @@ function PanelAccounts() {
 
                 </Cards>}
 
-{    view == 'Table' &&            <Table>
+                {view == 'Table' && 
+                    <Table>
 
-                    <div>
+                        <div>
 
-                        <Box sx={{ height: 800, width: '100%' }}>
+                            <Box sx={{ height: 800, width: '100%' }}>
 
-                            <DataGrid
-                            rows={filteredAccount}
-                            columns={columns}
-                            pageSize={10}
-                            rowsPerPageOptions={[5]}
-                            checkboxSelection
-                            disableSelectionOnClick
-                        />
+                                <DataGrid
+                                rows={filteredAccount}
+                                columns={columns}
+                                pageSize={10}
+                                rowsPerPageOptions={[5]}
+                                checkboxSelection
+                                disableSelectionOnClick
+                            />
 
-                        </Box>
+                            </Box>
 
 
 
-                    </div>
+                        </div>
 
-                </Table>}
+                    </Table>}
 
 
             <AccountForm/>

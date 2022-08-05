@@ -1,128 +1,126 @@
-import { useEffect, useState } from 'react';
-import Box from '@mui/material/Box';
-import {Container, Header, Body, ButtonDiv, Grid } from '../UI/Layout/styles'
-import ServiceOpportunity from '../../services/ServiceOpportunity';
-import { DataGrid } from '@mui/x-data-grid';
+import React, { useState, useEffect } from 'react'
+import OpportunityService from '../../services/ServiceOpportunity'
+import OpportunityTypes from '../../services/ServiceOpportunityTypes'
+import Stage from '../../services/ServiceStage'
+import { useParams } from "react-router-dom";
+import { Main, Header, Panel1, Panel2, Panel3, Row, Item } from "./styles"
+import SubvencionComponent from './Subvencion';
+import ActivitiesComponent from '../AccountDetail/Activities';
+import RowEditable from '../UI/RowEditable'
+import Tramites from '../Tramites'
+import TimelineComponent from '../UI/Timeline'
 
 const OpportunityDetail = () => {
-
-    const [opportunity, setOpportunity] = useState([])
+    const [opportunity, setOpportunity] = useState({})
+    const [opportunityTypes, setOpportunityTypes] = useState([])
+    const [stages, setStages] = useState([])
+    let { id } = useParams()
 
     useEffect(() => {
-
-
-        ServiceOpportunity.getOpportunity().then((opportunity) => {
-            setOpportunity(opportunity)
+        OpportunityService.getOpportunityDetail(id)
+        .then((elements) => {
+            setOpportunity(elements)
+    
         })
+        .catch((error) => {
+            console.error(error);
+        })
+    
+    
+    
+        OpportunityTypes.getOpportunity()
+        .then((opportunityTypes) => {
+            setOpportunityTypes(opportunityTypes)
+        })
+        .catch((err) => {
+            console.error(err)
+        })
+    
+        Stage.getStages()
+        .then((stages) => {
+            setStages(stages)
+        })
+        .catch((err) => {
+            console.error(err)
+        })
+
     }, [])
 
-    const TextFieldEls = [
-        {label: 'Nombre Completo', name: 'full_name', required: true},
-        {label: 'Teléfono', name: 'phone', required: true},
-        {label: 'Email', name: 'email', required: true},    
-    
-    ]
-    
-    const InputFileEls = [
-    ]
-    
-    const SelectFieldEls  = [
+    const editable = [
+        {propertyName: 'description', label: 'descripción', value: opportunity.description, type: 'text', editable: true},
+        {propertyName: 'closing_date', label: 'Fecha cierre', value: opportunity.closingDate, type: 'date', editable: true},
+        {propertyName: 'probability', label: 'Probabilidad', value: opportunity.probability, type: 'number', editable: true},
+        {propertyName: 'amount', label: 'Importe', value: opportunity.amount, type: 'number', editable: true},
+        {propertyName: 'createdAt', label: 'Creado', value: opportunity.createdAt, type: 'date', editable: false},
     ]
 
-    const columns = [
-        { 
-          field: 'id', 
-          headerName: 'ID', 
-          width: 90,
-          editable: false,
-          resizable: true
-        },
-        {
-          field: 'title',
-          headerName: 'Titulo',
-          editable: true,
-          width: 200,
-        },
-        {
-          field: 'description',
-          headerName: 'description',
-          editable: true,
-          width: 200,
-        },
-        {
-          field: 'source',
-          headerName: 'source',
-          editable: true,
-          width: 150,
-        },
-        {
-          field: 'closing_date',
-          headerName: 'closing_date',
-          editable: true,
-          width: 150,
-        },
-        {
-          field: 'probability',
-          headerName: 'probability',
-          editable: true,
-        },
-        {
-          field: 'amount',
-          headerName: 'amount',
-          editable: true,
-        },
-        {
-          field: 'account_id',
-          headerName: 'account_id',
-          editable: true,
-          width: 150,
-        },
-        {
-          field: 'stage_id',
-          headerName: 'stage_id',
-          editable: true,
-          width: 150,
-        },
-      ];
-          
-    
+    const updateOpportunity = (id, propertyName, value) => {
+
+        //let withNew = opportunities.filter((opportunities) => { return opportunities.id == id})
+
+        OpportunityService.update(id, { [propertyName]: value.value })
+    }
+
+
+
+
+
     return (
-        <Container>
+        <div>
 
+        <Main>
         <Header>
-            <Grid>
-                <h2>Oportunidades</h2>
-                <ButtonDiv>
-{/*                         <CreateNewForm
-                        boton='Crear nuevo contacto'
-                        titulo='Crear nuevo contacto'
-                        TextFieldEls={TextFieldEls}
-                        InputFileEls={InputFileEls}
-                        SelectFieldEls={SelectFieldEls}
-                        onSubmit={onSubmit}
-                        
-                        /> */}
+                <Row>
+                    <h2>{opportunity.title} </h2>
+{/*                    {descriptionArray.map((stage) =>  <StageChip text={stage}/>)} */}
+                </Row>
+                
+            </Header>
 
+            
+        <Panel1>
+        <Item>
 
-                </ButtonDiv>
+            <h2> Información básica </h2>
 
-            </Grid>
+            {editable.map((el) => 
+            <RowEditable
+            key={el.propertyName}
+            propertyName={el.propertyName}
+            label={el.label}
+            value={el.value}
+            type={el.type}
+            editable={el.editable}
+            handleOnSubmit={(propertyName, value) => updateOpportunity(el.id, propertyName, value)}
+            />
+            )}
 
-        </Header>
+            </Item>
 
-        <Body>
-        <Box sx={{ height: 800, width: '100%' }}>
-        <DataGrid
-            rows={opportunity}
-            columns={columns}
-            disableSelectionOnClick
-            pageSize={30}
-        />
-        </Box>
-        </Body>
+            <TimelineComponent/>
 
-    </Container>
-    )
-}
+        </Panel1>
 
-export default OpportunityDetail
+        <Panel3>
+            <SubvencionComponent
+            key={opportunity.id}
+            opportunityId={opportunity.id}
+            />
+
+        <Tramites/>
+
+        </Panel3>
+
+        <Panel2>
+        <ActivitiesComponent
+                    key={opportunity.id}
+                    accountId={opportunity.account_id} 
+                />
+
+        </Panel2>
+
+        </Main>
+        </div>
+    )}
+
+export default OpportunityDetail;

@@ -23,14 +23,14 @@ const RowInfo = ({
     }
     , [value]);
 
-    const handleChange = () => {
-        
-        setIsNamedFocused(false);
-        handleOnSubmit(propertyName, {value: name})
-    }
 
     const handleOnSave = () => {
-        
+
+        if (type === 'date' && name === '') {
+            return;
+        }
+
+        console.log(name);
         setIsNamedFocused(false);
         handleOnSubmit(propertyName, {value: name})
     }
@@ -53,7 +53,7 @@ const RowInfo = ({
                 size="small"
                 type={type ? type : 'text'}
                 autoFocus
-                value={type === 'date' ? dateHtml(name) : name}
+                value={type === 'date' &&  name !== undefined ? dateHtml(name) : name}
                 onChange={event => setName(event.target.value)}
                 onBlur={event => handleOnSave(event)}
                 />

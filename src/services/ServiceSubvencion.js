@@ -11,10 +11,17 @@ const getDetail = (id) =>
         data
     }).then((res) => res.data);
 
+    const update = (id, data) =>
+    Request(`/subvencion/${id}`, {
+        method: "PATCH",
+        data
+    }).then((res) => res.data);
+
     export default {
         get,
         getDetail,
-        create
+        create,
+        update
     }
 
 
