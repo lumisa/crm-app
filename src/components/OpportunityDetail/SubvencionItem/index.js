@@ -9,8 +9,10 @@ const SubvencionItem = (props) => {
         title,
         opportunityId,
         deleteOportunity,
-        accountId,
+        ccaa,
         updateSubvencion,
+        tramiteNumber,
+        presentacionDate,
     } = props
 
     const handleOnSubmit = (propertyName, value) => {
@@ -20,10 +22,20 @@ const SubvencionItem = (props) => {
 
     }
 
+    const urlCatalunya = () => {
+        if (ccaa.toLowerCase() === 'catalunya')
+            return <a href='https://ovt.gencat.cat/carpetaciutadana360#/consulta' target='_blank'>Consulta estado Catalunya</a>
+
+    }
+
     const editable = [
-        {propertyName: 'accountId', label: 'cuenta id', value: accountId, type: 'text', editable: false},
         {propertyName: 'opportunityId', label: 'Oportunidad id', value: opportunityId, type: 'text', editable: false},
+        {propertyName: 'ccaa', label: 'CCAA', value: ccaa, type: 'text', editable: true},
+        {propertyName: 'tramite_number', label: 'Número trámite', value: tramiteNumber, type: 'text', editable: true},
+        {propertyName: 'presentacionDate', label: 'Fecha presentación', value: presentacionDate, type: 'date', editable: true},
     ]
+
+
 
     return (
         <SubItem>
@@ -34,6 +46,7 @@ const SubvencionItem = (props) => {
  */}
                 <BurgerIconDelete deleteItem={deleteOportunity}/>
             </Row>
+            {urlCatalunya()}
             {editable.map((item, i) => (
                 <RowEditable
                 key={`subvencion-editable` + i}

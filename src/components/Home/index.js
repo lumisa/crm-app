@@ -26,15 +26,12 @@ function Home () {
 
   useEffect(() => {
 
-/*     const token = localStorage.getItem('token')
+    const token = localStorage.getItem('token')
     
-    if(token){
-      setLoggedIn(true)
-      navigate('/')
-    }else{
+    if(!token)
+    {
       navigate('/login')
-    } */
-    
+    }    
   }, [])
 
   

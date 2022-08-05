@@ -111,14 +111,14 @@ const OpportunityList = () => {
         </Header>
 
         <Body>
-        <Box sx={{ height: 800, width: '100%' }}>
-        <DataGrid
-            rows={opportunity}
-            columns={columns}
-            disableSelectionOnClick
-            pageSize={30}
-        />
-        </Box>
+          <Box sx={{ height: 800, width: '100%' }}>
+            <DataGrid
+                rows={opportunity}
+                columns={columns}
+                disableSelectionOnClick
+                pageSize={30}
+            />
+          </Box>
         </Body>
 
     </Container>

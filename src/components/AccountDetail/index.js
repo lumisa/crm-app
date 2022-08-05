@@ -5,9 +5,10 @@ import Contact from '../../services/ServiceContact'
 import { Main, Header, Panel1, Panel2, Panel3, Panel0, Row, Item } from  './styles'
 import RowEditable from '../UI/RowEditable'
 import ActivitiesComponent from './Activities';
-import OpportunitiesComponent from './Opportunities';
+import OpportunitiesComponent from './OpportunitiesComponent';
 import Documentacion from './Documentacion'
 import ImageComponent from './ImageComponent'
+import ContactComponent from './ContactComponent'
 
 const AccountDetail = () => {
 
@@ -21,10 +22,17 @@ const AccountDetail = () => {
         .then((account) => {
             setAccount(account)
 
-            Contact.getContactDetail(account.contact_id).then((contact) => {
-                setContact(contact)
-    
-            })
+            if (account.contact_id)
+            {
+                Contact.getContactDetail(account.contact_id)
+                .then((contact) => {
+                    setContact(contact)
+                })
+
+            } else {
+                setContact(null)
+            }
+
 
             
         })
@@ -53,18 +61,14 @@ const AccountDetail = () => {
         {propertyName: 'updatedAt', label: 'Fecha de actualización', value: account.updatedAt, type: 'date', editable: false},
     ]
 
-    const contactData = [
-        {propertyName: 'full_name', label: 'Nombre cliente', value: contact.full_name, type: 'text', editable: true},
-        {propertyName: 'phone', label: 'Teléfono', value: contact.phone, type: 'text', editable: true},
-        {propertyName: 'email', label: 'Email', value: contact.email, type: 'text', editable: true},
-    ]
 
 
     const documentacion = [
         {propertyName: 'CIE_file', label: 'CIE', attached: account.CIE_file ? true : false, path: account.CIE_file},
         {propertyName: 'project_file', label: 'Proyecto técnico', attached: account.project_file ? true : false, path: account.project_file},
         {propertyName: 'memoria_file', label: 'Memoria técnica', attached: account.memoria_file ? true : false, path: account.memoria_file},
-        {propertyName: 'factura_file', label: 'Factura', attached: account.factura_file ? true : false, path: account.factura_file},
+        {propertyName: 'comunicacion_obra_file', label: 'Comunidación obra', attached: account.factura_file ? true : false, path: account.factura_file},
+        {propertyName: 'declaracion_propietario_file', label: 'Declaración propietario', attached: account.factura_file ? true : false, path: account.factura_file},
     ]
 
     // OpportunityService.update(id, { [propertyName]: value.value })
@@ -82,12 +86,13 @@ const AccountDetail = () => {
 
     }
 
-    const handleOnSubmitContact = (propertyName, value) => {
+    const handleOnSubmitContact = (selectedPersonId) => {
 
-        Contact.update(contact.id, {[propertyName] : value.value})
-        .then((contact) => {
-            setContact(contact)
-        })
+        Account.update(id, {contact_id: selectedPersonId})
+        .then((account) => {
+            setAccount(account)
+        }
+        )
         .catch((error) => {
             console.error(error)
         }
@@ -155,19 +160,10 @@ const AccountDetail = () => {
                 <Item>
                     <h2> Contacto </h2>
 
-                    {contactData.map((el) =>
-                    
-                    <RowEditable
-                    key={el.propertyName}
-                    propertyName={el.propertyName}
-                    label={el.label}
-                    value={el.value}
-                    type={el.type}
-                    editable={el.editable}
-                    handleOnSubmit={(propertyName, value) => handleOnSubmitContact(propertyName, value)}
-
+                    <ContactComponent
+                    contact={contact}
+                    handleOnSubmitContact={(selectedPersonId) => handleOnSubmitContact(selectedPersonId)}
                     />
-                    )}
 
                     
                 </Item>

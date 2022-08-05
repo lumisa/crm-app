@@ -37,8 +37,8 @@ const Sidebar = () => {
         <SidebarStyled>
             <nav>
                 <List>
-                    {menuItem.map((item, index) => (
-                        <ListItem disablePadding key={index}>
+                    {menuItem.map((item) => (
+                        <ListItem disablePadding key={item.name}>
                             <Link to={item.link}>
                                 <ListItemButton>
                                     <ListItemIcon>{item.icon}</ListItemIcon>

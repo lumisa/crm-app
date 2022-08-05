@@ -9,23 +9,28 @@ import Button from '@mui/material/Button';
 
 
 
-export default function IconChips({text, options}) {
+export default function IconChips({stageId, options, propertyName, handleOnSubmit}) {
     const [anchorEl, setAnchorEl] = useState(null);
+    const [text, setText ] = useState('')
   const [selectedIndex, setSelectedIndex] = useState(1);
   const open = Boolean(anchorEl);
   const [optionsList, setOptions] = useState([]);
-
+  
   useEffect(() => {
+    const selectedDescription = options.map((el) => el.id === stageId && el.stage_description)
     setOptions(options);
+    setText(selectedDescription)
   }
   , [options]);
-
+  
   const handleClickListItem = (event) => {
     setAnchorEl(event.currentTarget);
   };
-
-  const handleMenuItemClick = (event, index) => {
-    setSelectedIndex(index);
+  
+  const handleMenuItemClick = (optionId) => {
+    const selectedDescription = options.map((el) => el.id === optionId && el.stage_description)
+    setText(selectedDescription)
+    handleOnSubmit(propertyName, {value: optionId});
     setAnchorEl(null);
   };
 
@@ -60,7 +65,7 @@ export default function IconChips({text, options}) {
             key={option.id}
             disabled={index === 0}
             selected={index === selectedIndex}
-            onClick={(event) => handleMenuItemClick(event, index)}
+            onClick={() => handleMenuItemClick(option.id)}
           >
             {option.stage_description}
           </MenuItem>

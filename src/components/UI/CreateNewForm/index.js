@@ -48,7 +48,9 @@ const CreateNewForm = (
 
     const handleOnSubmit = (e) => {
         e.preventDefault();
+        toggleDrawer(anchor, false)
         onSubmit(formInput);
+
       }
 
     const FormDrawer = (titulo, TextFieldEls, InputFileEls) => (

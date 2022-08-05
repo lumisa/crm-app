@@ -42,9 +42,10 @@ const SubvencionComponent = ({opportunityId}) => {
     }
 
 
+
     const TextFieldEls = [
-        {label: 'Fecha presentación', name: 'date', required: false},
-        {label: 'CCAA', name: 'ccaa', required: false},
+        {label: 'Fecha presentación', name: 'presentacionDate', type: 'date', required: false},
+        {label: 'CCAA', name: 'ccaa', type: 'text', required: false},
     
     ]
     
@@ -74,11 +75,14 @@ const SubvencionComponent = ({opportunityId}) => {
 
             </Row>
                 {subvenciones.map((subvencion, i) => (
+                    
 
                     <SubvencionItem
                     key={`subvencion-${i}`}
-                    accoundId={subvencion.account_id}
+                    ccaa={subvencion.ccaa}
+                    tramiteNumber={subvencion.tramite_number}
                     opportunityId={subvencion.opportunity_id}
+                    presentacionDate={subvencion.presentacionDate}
                     updateSubvencion={(propertyName, value) => updateSubvencion(subvencion.id, propertyName, value)}
                     />
                     

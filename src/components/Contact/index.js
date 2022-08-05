@@ -3,6 +3,7 @@ import {Container, Header, Body, ButtonDiv, Grid } from '../UI/Layout/styles'
 import CreateNewForm from '../UI/CreateNewForm';
 import ContactService from '../../services/ServiceContact'
 import { DataGrid } from '@mui/x-data-grid';
+import Box from '@mui/material/Box';
 
 const Contact = () => {
 
@@ -21,18 +22,15 @@ const Contact = () => {
     
     ]
     
-    const InputFileEls = [
-    ]
+    const InputFileEls = []
     
-    const SelectFieldEls  = [
-    ]
+    const SelectFieldEls  = []
 
     const columns = [
-        { field: 'id', headerName: 'ID', width: 90 },
         {
           field: 'full_name',
           headerName: 'Nombre Completo',
-          width: 150,
+          width: 200,
           editable: true,
         },
         {
@@ -44,7 +42,7 @@ const Contact = () => {
         {
           field: 'email',
           headerName: 'Email',
-          width: 200,
+          width: 300,
           editable: true,
         },
       ];
@@ -84,13 +82,16 @@ const Contact = () => {
             </Header>
 
             <Body>
+            <Box sx={{ height: 800, width: '100%' }}>
+
             <DataGrid
                 rows={contacts}
                 columns={columns}
-                pageSize={5}
-                rowsPerPageOptions={[5]}
+                pageSize={20}
+                rowsPerPageOptions={[20]}
                 disableSelectionOnClick
             />
+            </Box>
             </Body>
         </Container>
 

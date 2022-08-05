@@ -14,7 +14,7 @@ const Opportunity = (props) => {
         amount,
         createdAt,
         id,
-        stage,
+        stageId,
         stages,
         deleteOportunity,
         opportunityType,
@@ -31,10 +31,7 @@ const Opportunity = (props) => {
     ]
 
     const handleOnSubmit = (propertyName, value) => {
-
-
         updateOpportunity(propertyName, value)
-
     }
 
 
@@ -46,7 +43,12 @@ const Opportunity = (props) => {
             <Row>
                 <h3>{<Link to={`/opportunity-detail/${id}`}>{title}</Link>}</h3>
 
-                <StageChip text={stage} options={stages}/>
+                <StageChip 
+                stageId={stageId} 
+                options={stages}
+                propertyName='stage_id'
+                handleOnSubmit={(propertyName, value) => handleOnSubmit(propertyName, value)}
+                />
 
                 <BurgerIconDelete deleteItem={deleteOportunity}/>
             </Row>

@@ -9,7 +9,7 @@ import CreateNewForm from '../../UI/CreateNewForm'
 import Stage from '../../../services/ServiceStage'
 
 
-const Opportunities = ({accountId}) => {
+const OpportunitiesComponent = ({accountId}) => {
     const [opportunities, setOpportunities] = useState([])
     const [opportunityTypes, setOpportunityTypes] = useState([])
     const [stages, setStages] = useState([])
@@ -77,10 +77,8 @@ const Opportunities = ({accountId}) => {
 
     const TextFieldEls = [
         {label: 'Titulo', name: 'title', required: true},
-        {label: 'Descripción', name: 'description', required: true},
-        {label: 'Fecha de cierre', name: 'closing_date', required: true, type: 'date'},
-        {label: 'Probabilidad', name: 'probability', required: true, type: 'range'},
-        {label: 'Monto', name: 'amount', required: true, type: 'number'},
+        {label: 'Descripción', name: 'description', required: false},
+        {label: 'Fecha de cierre', name: 'closing_date', required: false, type: 'date'},
     
     ]
     
@@ -129,7 +127,7 @@ const Opportunities = ({accountId}) => {
                     AddIcon={dateFormatter(opportunity.createdAt)}
                     id={opportunity.id}
                     opportunityType={opportunityTypes.map((opportunityType) => opportunityType.id === opportunity.oportunity_type_id ? opportunityType.oportunity_type_description : null)}
-                    stage={stages.map((stage) => stage.id === opportunity.stage_id ? stage.stage_description : null)}
+                    stageId={opportunity.stage_id}
                     stages={stages}
                     deleteOportunity={() => deleteOportunity(opportunity.id)}
                     updateOpportunity={(propertyName, value) => updateOpportunity(opportunity.id, propertyName, value)}
@@ -144,4 +142,4 @@ const Opportunities = ({accountId}) => {
     )
 }
 
-export default Opportunities
+export default OpportunitiesComponent

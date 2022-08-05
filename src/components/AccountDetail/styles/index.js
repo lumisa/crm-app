@@ -58,6 +58,7 @@ export const ImgSpan = styled.span`
     display: block;
     background-position: center;
     background-size: cover;
+    background-color: grey;
 ${({src}) => `background-image: url(${src});`}
 
 `
