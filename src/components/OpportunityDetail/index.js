@@ -47,6 +47,7 @@ const OpportunityDetail = () => {
     }, [])
 
     const editable = [
+        {propertyName: 'title', label: 'Titulo', value: opportunity.title, type: 'text', editable: true},
         {propertyName: 'description', label: 'descripción', value: opportunity.description, type: 'text', editable: true},
         {propertyName: 'closing_date', label: 'Fecha cierre', value: opportunity.closingDate, type: 'date', editable: true},
         {propertyName: 'probability', label: 'Probabilidad', value: opportunity.probability, type: 'number', editable: true},
@@ -107,15 +108,13 @@ const OpportunityDetail = () => {
             opportunityId={opportunity.id}
             />
 
-        <Tramites/>
-
         </Panel3>
 
         <Panel2>
         <ActivitiesComponent
-                    key={opportunity.id}
-                    accountId={opportunity.account_id} 
-                />
+            key={opportunity.id}
+            accountId={opportunity.account_id} 
+        />
 
         </Panel2>
 

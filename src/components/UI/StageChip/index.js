@@ -6,29 +6,39 @@ import { useState, useEffect } from 'react';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import Button from '@mui/material/Button';
+import Stage from '../../../services/ServiceStage'
 
 
 
-export default function IconChips({stageId, options, propertyName, handleOnSubmit}) {
-    const [anchorEl, setAnchorEl] = useState(null);
-    const [text, setText ] = useState('')
+export default function IconChips({stageId, propertyName, handleOnSubmit}) {
+  const [stages, setStages] = useState([])
+
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [text, setText ] = useState('')
   const [selectedIndex, setSelectedIndex] = useState(1);
   const open = Boolean(anchorEl);
-  const [optionsList, setOptions] = useState([]);
   
   useEffect(() => {
-    const selectedDescription = options.map((el) => el.id === stageId && el.stage_description)
-    setOptions(options);
-    setText(selectedDescription)
+    
+    Stage.getStages()
+    .then((stages) => {
+      const selectedDescription = stages.map((el) => el.id === stageId && el.stage_description)
+        setStages(stages)
+        setText(selectedDescription)
+    })
+    .catch((err) => {
+        console.error(err)
+    })
+
   }
-  , [options]);
+  , []);
   
   const handleClickListItem = (event) => {
     setAnchorEl(event.currentTarget);
   };
   
   const handleMenuItemClick = (optionId) => {
-    const selectedDescription = options.map((el) => el.id === optionId && el.stage_description)
+    const selectedDescription = stages.map((el) => el.id === optionId && el.stage_description)
     setText(selectedDescription)
     handleOnSubmit(propertyName, {value: optionId});
     setAnchorEl(null);
@@ -60,7 +70,7 @@ export default function IconChips({stageId, options, propertyName, handleOnSubmi
           role: 'listbox',
         }}
       >
-        {optionsList.map((option, index) => (
+        {stages.map((option, index) => (
           <MenuItem
             key={option.id}
             disabled={index === 0}

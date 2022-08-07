@@ -15,7 +15,6 @@ const Opportunity = (props) => {
         createdAt,
         id,
         stageId,
-        stages,
         deleteOportunity,
         opportunityType,
         updateOpportunity,
@@ -45,7 +44,6 @@ const Opportunity = (props) => {
 
                 <StageChip 
                 stageId={stageId} 
-                options={stages}
                 propertyName='stage_id'
                 handleOnSubmit={(propertyName, value) => handleOnSubmit(propertyName, value)}
                 />

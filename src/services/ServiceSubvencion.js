@@ -1,4 +1,5 @@
 import Request from "./request";
+import RequestForm from "./requestForm";
 
 const get = () => Request("/subvencion").then((res) => res.data);
 
@@ -11,6 +12,12 @@ const getDetail = (id) =>
         data
     }).then((res) => res.data);
 
+    const updateFile = (id, formData) =>
+    RequestForm(`/subvencion/${id}`, {
+      method: "PATCH",
+      formData,
+    }).then((res) => res.data);
+
     const update = (id, data) =>
     Request(`/subvencion/${id}`, {
         method: "PATCH",
@@ -21,6 +28,7 @@ const getDetail = (id) =>
         get,
         getDetail,
         create,
+        updateFile,
         update
     }
 

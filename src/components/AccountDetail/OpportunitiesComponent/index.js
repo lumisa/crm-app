@@ -26,7 +26,6 @@ const OpportunitiesComponent = ({accountId}) => {
         })
     
     
-    
         OpportunityTypes.getOpportunity()
         .then((opportunityTypes) => {
             setOpportunityTypes(opportunityTypes)
@@ -128,7 +127,6 @@ const OpportunitiesComponent = ({accountId}) => {
                     id={opportunity.id}
                     opportunityType={opportunityTypes.map((opportunityType) => opportunityType.id === opportunity.oportunity_type_id ? opportunityType.oportunity_type_description : null)}
                     stageId={opportunity.stage_id}
-                    stages={stages}
                     deleteOportunity={() => deleteOportunity(opportunity.id)}
                     updateOpportunity={(propertyName, value) => updateOpportunity(opportunity.id, propertyName, value)}
                 />

@@ -40,9 +40,9 @@ function AccountCard(props) {
                         <BurgerIconDelete deleteItem={() => deleteAccount(id)}/>
                     </Row>
 
-                    {info.map((el) => (
+                    {info.map((el, i) => (
 
-                        <RowInfo text= {el.label} description={el.value}/>
+                        <RowInfo key={i} text= {el.label} description={el.value}/>
 
                     ))}
 

@@ -28,78 +28,79 @@ const ContactComponent = ({contact, handleOnSubmitContact}) => {
         )
     }
 
-
-    
-    if (contact) {
-        const contactData = [
-            {propertyName: 'full_name', label: 'Nombre cliente', value: contact.full_name ? contact.full_name : '', type: 'text', editable: true},
-            {propertyName: 'phone', label: 'Teléfono', value: contact.phone ? contact.full_name : '', type: 'text', editable: true},
-            {propertyName: 'email', label: 'Email', value: contact.email ? contact.email : '', type: 'text', editable: true},
-        ]
-        
-        return (
-    
-            <>
-    
-            {contactData.map((el) => 
-    
-                <RowEditable
-                key={el.propertyName}
-                propertyName={el.propertyName}
-                label={el.label}
-                value={el.value}
-                type={el.type}
-                editable={el.editable}
-                handleOnSubmit={(propertyName, value) => handleOnSubmitContact(propertyName, value)}
-                />
-    
-    
-                        
-            )}
+    const conditionDisplay = () => {
+        if (contact) {
+            const contactData = [
+                {propertyName: 'full_name', label: 'Nombre cliente', value: contact.full_name ? contact.full_name : '', type: 'text', editable: false},
+                {propertyName: 'phone', label: 'Teléfono', value: contact.phone ? contact.full_name : '', type: 'text', editable: false},
+                {propertyName: 'email', label: 'Email', value: contact.email ? contact.email : '', type: 'text', editable: false},
+            ]
             
-            </>
-        )
-    }
-    else
-    {
-
-        const TextFieldEls = [
-            {label: 'Nombre Completo', name: 'full_name', required: true},
-            {label: 'Teléfono', name: 'phone', required: true},
-            {label: 'Email', name: 'email', required: true},    
+            return (
         
-        ]
+                <>
         
-        const InputFileEls = []
+                {contactData.map((el) => 
         
-        const SelectFieldEls  = []
-
-
-        return (
-            <>
-            <Stack spacing={2} direction="row">
-                <Button variant="text" onClick={handleOpen}>Añadir contacto existente</Button>
-                <CreateNewForm
-                boton='Añadir contacto nuevo'
-                titulo='Crear nuevo contacto'
-                TextFieldEls={TextFieldEls}
-                InputFileEls={InputFileEls}
-                SelectFieldEls={SelectFieldEls}
-                onSubmit={handleSubmitNewContact}
+                    <RowEditable
+                    key={el.propertyName}
+                    propertyName={el.propertyName}
+                    label={el.label}
+                    value={el.value}
+                    type={el.type}
+                    editable={el.editable}
+                    handleOnSubmit={(propertyName, value) => handleOnSubmitContact(propertyName, value)}
+                    />
+        
+        
+                            
+                )}
                 
-                />
-            </Stack>
-
-            <AddContactModal
-            open={open}
-            handleClose={handleClose}
-            handleSubmit={(selectedPersonId) => handleSubmitAddContact(selectedPersonId)}
-            
-            />
-
-            </>
-        )
+                
+                </>
+            )
+        }
+    
     }
+
+    const newContactButton = () => {
+        <AddContactModal
+        open={open}
+        handleClose={handleClose}
+        handleSubmit={(selectedPersonId) => handleSubmitNewContact(selectedPersonId)}
+        />
+    }
+
+    const TextFieldEls = [
+        {label: 'Nombre Completo', name: 'full_name', required: true},
+        {label: 'Teléfono', name: 'phone', required: true},
+        {label: 'Email', name: 'email', required: true},    
+    
+    ]
+    
+    const InputFileEls = []
+    
+    const SelectFieldEls  = []
+
+    return (
+
+        <>
+            <Stack spacing={2} direction="row">
+                <Button variant="text" onClick={handleOpen}>{contact ? 'Cambiar contacto' : 'Añadir contacto existente'}</Button>
+                {contact ? newContactButton() : null}
+            </Stack>
+            <AddContactModal
+                open={open}
+                handleClose={handleClose}
+                handleSubmit={(selectedPersonId) => handleSubmitAddContact(selectedPersonId)}
+                />
+            {conditionDisplay()}
+        
+        </>
+
+
+    )
+    
 
 
 
