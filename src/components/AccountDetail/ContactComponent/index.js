@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import RowEditable from '../../UI/RowEditable'
+import EditableInput from '../../UI/EditableInput'
 import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import AddContactModal from '../../UI/AddContactModal'
@@ -42,7 +42,7 @@ const ContactComponent = ({contact, handleOnSubmitContact}) => {
         
                 {contactData.map((el) => 
         
-                    <RowEditable
+                    <EditableInput
                     key={el.propertyName}
                     propertyName={el.propertyName}
                     label={el.label}

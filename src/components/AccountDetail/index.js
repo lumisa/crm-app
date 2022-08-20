@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 import Account from '../../services/ServiceAccount'
 import Contact from '../../services/ServiceContact'
 import { Main, Header, Panel1, Panel2, Panel3, Panel0, Row, Item } from  './styles'
-import RowEditable from '../UI/RowEditable'
+import EditableInput from '../UI/EditableInput'
 import ActivitiesComponent from './Activities';
 import OpportunitiesComponent from './OpportunitiesComponent';
 import Documentacion from './Documentacion'
@@ -138,7 +138,7 @@ const AccountDetail = () => {
                     <h2> Información básica </h2>
 
                     {infoBasica.map((el) => 
-                    <RowEditable
+                    <EditableInput
                     key={el.propertyName}
                     propertyName={el.propertyName}
                     label={el.label}
@@ -200,7 +200,7 @@ const AccountDetail = () => {
                     <h2>Titular</h2>
                     {titular.map((el) =>
                     
-                        <RowEditable
+                        <EditableInput
                             key={el.propertyName}
                             propertyName={el.propertyName}
                             label={el.label}
@@ -236,7 +236,7 @@ const AccountDetail = () => {
                     />
 
                     {representante.map((el) => 
-                    <RowEditable
+                    <EditableInput
                     key={el.propertyName}
                     propertyName={el.propertyName}
                     label={el.label}
