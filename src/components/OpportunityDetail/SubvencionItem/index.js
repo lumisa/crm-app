@@ -1,7 +1,7 @@
 import { SubItem, Row } from './styles'
 import StageChip from '../../UI/StageChip'
 import BurgerIconDelete from '../../UI/BurgerIconDelete'
-import RowEditable from '../../UI/RowEditable'
+import EditableInput from '../../UI/EditableInput'
 import Documentacion from '../../AccountDetail/Documentacion'
 import ServiceStage from '../../../services/ServiceStage'
 
@@ -64,7 +64,7 @@ const SubvencionItem = (props) => {
             </Row>
             {urlCatalunya()}
             {editable.map((item, i) => (
-                <RowEditable
+                <EditableInput
                 key={`subvencion-editable` + i}
                 editable={item.editable}
                 label= {item.label} 
