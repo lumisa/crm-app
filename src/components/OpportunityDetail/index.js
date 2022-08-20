@@ -6,20 +6,24 @@ import { useParams } from "react-router-dom";
 import { Main, Header, Panel1, Panel2, Panel3, Row, Item } from "./styles"
 import SubvencionComponent from './Subvencion';
 import ActivitiesComponent from '../AccountDetail/Activities';
-import RowEditable from '../UI/RowEditable'
-import Tramites from '../Tramites'
+import EditableInput from '../UI/EditableInput'
+//import Tramites from '../Tramites'
 import TimelineComponent from '../UI/Timeline'
+import BonificacionComponent from './Bonificacion'
+import PuntoConexionComponent from './PuntoConexion'
 
 const OpportunityDetail = () => {
     const [opportunity, setOpportunity] = useState({})
     const [opportunityTypes, setOpportunityTypes] = useState([])
     const [stages, setStages] = useState([])
+    const [tramites, setTramites] = useState([])
     let { id } = useParams()
 
     useEffect(() => {
         OpportunityService.getOpportunityDetail(id)
-        .then((elements) => {
-            setOpportunity(elements)
+        .then((element) => {
+            setOpportunity(element)
+            setTramites(element.tramites)
     
         })
         .catch((error) => {
@@ -85,7 +89,7 @@ const OpportunityDetail = () => {
             <h2> Información básica </h2>
 
             {editable.map((el) => 
-            <RowEditable
+            <EditableInput
             key={el.propertyName}
             propertyName={el.propertyName}
             label={el.label}
@@ -98,12 +102,21 @@ const OpportunityDetail = () => {
 
             </Item>
 
-            <TimelineComponent/>
+            <PuntoConexionComponent
+            key={opportunity.id}
+            opportunityId={opportunity.id}
+            />
+
+            <TimelineComponent tramites={tramites}/>
 
         </Panel1>
 
         <Panel3>
             <SubvencionComponent
+            key={opportunity.id}
+            opportunityId={opportunity.id}
+            />
+            <BonificacionComponent
             key={opportunity.id}
             opportunityId={opportunity.id}
             />
