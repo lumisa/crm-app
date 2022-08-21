@@ -16,6 +16,7 @@ import Auth from '../../services/ServiceAuth'
 import { Main, Page } from './styles'
 import Sidebar from '../Sidebar'
 import Parametrizable from '../Parametrizable';
+import SubvencionesList from '../SubvencionList';
 function Home () {
 
 
@@ -67,6 +68,7 @@ function Home () {
           <Route path="/opportunity" element={<OpportunityList />}/>
           <Route path="/contact" element={<Contact/>}/>
           <Route path="/parametrizable" element={<Parametrizable />}/>
+          <Route path="/subvencion" element={<SubvencionesList />}/>
 
         </Routes>
 

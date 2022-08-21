@@ -1,5 +1,5 @@
 import React from 'react'
-import RowEditable from '../../UI/RowEditable'
+import EditableInput from '../../UI/EditableInput'
 import { OpItem, Row } from './styles'
 import BurgerIconDelete from '../../UI/BurgerIconDelete'
 import StageChip from '../../UI/StageChip'
@@ -15,7 +15,6 @@ const Opportunity = (props) => {
         createdAt,
         id,
         stageId,
-        stages,
         deleteOportunity,
         opportunityType,
         updateOpportunity,
@@ -45,7 +44,6 @@ const Opportunity = (props) => {
 
                 <StageChip 
                 stageId={stageId} 
-                options={stages}
                 propertyName='stage_id'
                 handleOnSubmit={(propertyName, value) => handleOnSubmit(propertyName, value)}
                 />
@@ -54,7 +52,7 @@ const Opportunity = (props) => {
             </Row>
 
             {editable.map((item, i) => (
-                <RowEditable
+                <EditableInput
                 key={`opportunity-editable` + i}
                 editable={item.editable}
                 label= {item.label} 

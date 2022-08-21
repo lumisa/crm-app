@@ -33,7 +33,7 @@ const OpportunityList = () => {
         { 
           field: 'id', 
           headerName: 'ID', 
-          width: 90,
+          width: 300,
           editable: false,
           resizable: true
         },
@@ -41,47 +41,49 @@ const OpportunityList = () => {
           field: 'title',
           headerName: 'Titulo',
           editable: true,
-          width: 200,
+          width: 300,
         },
         {
           field: 'description',
           headerName: 'description',
           editable: true,
-          width: 200,
+          width: 300,
         },
         {
           field: 'source',
           headerName: 'source',
           editable: true,
-          width: 150,
+          width: 300,
         },
         {
           field: 'closing_date',
           headerName: 'closing_date',
           editable: true,
-          width: 150,
+          width: 300,
         },
         {
           field: 'probability',
           headerName: 'probability',
           editable: true,
+          width: 300,
         },
         {
           field: 'amount',
           headerName: 'amount',
           editable: true,
+          width: 300,
         },
         {
           field: 'account_id',
           headerName: 'account_id',
           editable: true,
-          width: 150,
+          width: 300,
         },
         {
           field: 'stage_id',
           headerName: 'stage_id',
           editable: true,
-          width: 150,
+          width: 300,
         },
       ];
           

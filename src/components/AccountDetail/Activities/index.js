@@ -6,7 +6,7 @@ import { Row } from '../styles'
 import AddIcon from '@mui/icons-material/Add';
 import { dateFormatter } from '../../../utils/date'
 import CreateNewForm from '../../UI/CreateNewForm'
-import AppContext from '../../../contexts/App'
+
 const ActivitiesComponent = ({ accountId }) => {
     //const { user } = useContext(AppContext)
     const [activities, setActivities] = useState([])
@@ -36,7 +36,7 @@ const ActivitiesComponent = ({ accountId }) => {
         console.error(err)
     })
 
-    }, [])
+    }, [accountId])
 
 
     const handleOnSubmit = (data) => {

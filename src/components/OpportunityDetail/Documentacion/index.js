@@ -4,11 +4,11 @@ import {Label} from '../../UI/Label'
 import InsertDriveFileIcon from '@mui/icons-material/InsertDriveFile';
 import { Button } from '@mui/material';
 import UploadFileIcon from '@mui/icons-material/UploadFile';
-import AccountService from '../../../services/ServiceAccount'
+import ServiceSubvencion from '../../../services/ServiceSubvencion'
 import UploadModal from '../../UI/UploadModal'
 
 
-const Documentacion = ({accountId, attached, path, label, propertyName}) => {
+const Documentacion = ({id, attached, path, label, propertyName}) => {
 
     const [open, setOpen] = useState(false);
     const handleOpen = () => setOpen(true);
@@ -23,7 +23,7 @@ const Documentacion = ({accountId, attached, path, label, propertyName}) => {
         formData.append(event.target.name, file);
             
 
-        AccountService.updateFile(accountId, formData).then(res => {
+        ServiceSubvencion.updateFile(id, formData).then(res => {
             console.log(res);
             handleClose();
         }

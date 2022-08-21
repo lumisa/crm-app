@@ -1,25 +1,25 @@
 import Request from "./request";
 import RequestForm from "./requestForm";
 
-const get = () => Request("/subvencion").then((res) => res.data);
+const get = () => Request("/bonificacion").then((res) => res.data);
 
 const getDetail = (id) =>
-    Request(`/subvencion/${id}`).then((res) => res.data);
+    Request(`/bonificacion/${id}`).then((res) => res.data);
 
     const create = (data) =>
-    Request("/subvencion", {
+    Request("/bonificacion", {
         method: "POST",
         data
     }).then((res) => res.data);
 
     const updateFile = (id, formData) =>
-    RequestForm(`/subvencion/${id}`, {
+    RequestForm(`/bonificacion/${id}`, {
       method: "PATCH",
       formData,
     }).then((res) => res.data);
 
     const update = (id, data) =>
-    Request(`/subvencion/${id}`, {
+    Request(`/bonificacion/${id}`, {
         method: "PATCH",
         data
     }).then((res) => res.data);

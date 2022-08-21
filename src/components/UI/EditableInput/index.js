@@ -6,7 +6,7 @@ import { dateHtml, dateFormatter } from '../../../utils/date'
 import EditIcon from '@mui/icons-material/Edit';
 import Button from '@mui/material/Button';
 
-const RowInfo = ({
+const EditableInput = ({
     label, 
     value, 
     type, 
@@ -38,7 +38,7 @@ const RowInfo = ({
     return (
 
         <RowStyle>
-            <Label text={label}/>
+            {label && <Label text={label}/>}
 
             {!isNameFocused || editable === false? (
                 <p
@@ -70,4 +70,4 @@ const RowInfo = ({
 
 }
 
-export default RowInfo
+export default EditableInput

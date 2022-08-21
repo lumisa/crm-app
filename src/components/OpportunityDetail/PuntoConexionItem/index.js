@@ -5,7 +5,7 @@ import EditableInput from '../../UI/EditableInput'
 import Documentacion from '../../AccountDetail/Documentacion'
 import ServiceStage from '../../../services/ServiceStage'
 
-const SubvencionItem = (props) => {
+const PuntoConexionItem = (props) => {
 
     const {
         title,
@@ -15,7 +15,7 @@ const SubvencionItem = (props) => {
         ccaa,
         autorizacion_file,
         formulario,
-        updateSubvencion,
+        updateBonificacion,
         tramiteNumber,
         presentacionDate,
         declaracion_file,
@@ -26,7 +26,7 @@ const SubvencionItem = (props) => {
     const handleOnSubmit = (propertyName, value) => {
 
 
-        updateSubvencion(propertyName, value)
+        updateBonificacion(propertyName, value)
 
     }
 
@@ -65,7 +65,7 @@ const SubvencionItem = (props) => {
             {urlCatalunya()}
             {editable.map((item, i) => (
                 <EditableInput
-                key={`subvencion-editable` + i}
+                key={`bonificacion-editable` + i}
                 editable={item.editable}
                 label= {item.label} 
                 propertyName={item.propertyName}
@@ -94,4 +94,4 @@ const SubvencionItem = (props) => {
 
 }
 
-export default SubvencionItem
+export default PuntoConexionItem
