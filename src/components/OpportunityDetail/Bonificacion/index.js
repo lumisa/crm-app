@@ -45,7 +45,8 @@ const BonificacionComponent = ({opportunityId}) => {
 
     const TextFieldEls = [
         {label: 'Fecha presentación', name: 'presentacionDate', type: 'date', required: false},
-        {label: 'CCAA', name: 'ccaa', type: 'text', required: false},
+        {label: 'Municipio', name: 'municipio', type: 'text', required: false},
+        {label: 'Url Municipio', name: 'url', type: 'text', required: false},
     
     ]
     
@@ -75,21 +76,16 @@ const BonificacionComponent = ({opportunityId}) => {
 
             </Row>
                 {bonificaciones.map((bonificacion, i) => (
-                    
 
                     <BonificacionItem
                     key={`bonificacion-${i}`}
-                    ccaa={bonificacion.ccaa}
+                    municipio={bonificacion.municipio}
                     tramiteNumber={bonificacion.tramite_number}
                     opportunityId={bonificacion.opportunity_id}
                     id={bonificacion.id}
                     formulario={bonificacion.formulario}
-                    autorizacion_file={bonificacion.autorizacion_file}
                     presentacionDate={bonificacion.presentacionDate}
                     updateBonificacion={(propertyName, value) => updateBonificacion(bonificacion.id, propertyName, value)}
-                    declaracion_file={bonificacion.declaracion_file}
-                    acreditacion_file={bonificacion.acreditacion_file}
-                    acuso_recibo_file={bonificacion.acuso_recibo_file}
             
                     />
                     

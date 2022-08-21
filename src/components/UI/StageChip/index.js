@@ -7,8 +7,13 @@ import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import Button from '@mui/material/Button';
 import Stage from '../../../services/ServiceStage'
+import CancelIcon from '@mui/icons-material/Cancel';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 
-
+const expression = [
+  {description: 'rechazado', color: 'error', icon: <CancelIcon />},
+  {description: 'aceptado', color: 'success', icon: <CheckCircleIcon />},
+]
 
 export default function IconChips({stageId, propertyName, handleOnSubmit}) {
   const [stages, setStages] = useState([])
@@ -16,22 +21,27 @@ export default function IconChips({stageId, propertyName, handleOnSubmit}) {
   const [anchorEl, setAnchorEl] = useState(null);
   const [text, setText ] = useState('')
   const [selectedIndex, setSelectedIndex] = useState(1);
+  const [attr, setAttr] = useState({})
+
   const open = Boolean(anchorEl);
   
   useEffect(() => {
     
     Stage.getStages()
     .then((stages) => {
-      const selectedDescription = stages.map((el) => el.id === stageId && el.stage_description)
+      const selectedDescription = stages.filter((el) => el.id === stageId)[0].stage_description
         setStages(stages)
+        console.log(selectedDescription)
         setText(selectedDescription)
+        const getAttr = expression.filter((el) => el.description === selectedDescription)[0]
+        setAttr(getAttr)
     })
     .catch((err) => {
         console.error(err)
     })
 
   }
-  , []);
+  , [stageId]);
   
   const handleClickListItem = (event) => {
     setAnchorEl(event.currentTarget);
@@ -48,6 +58,19 @@ export default function IconChips({stageId, propertyName, handleOnSubmit}) {
     setAnchorEl(null);
   };
 
+
+
+  const iconWithColor = () => {
+    console.log(attr)
+
+    if (attr) {
+      return <Chip icon={attr.icon} label={text} color={attr.color} />
+    }
+    else {
+      return <Chip icon={<FaceIcon/>} label={text} color='primary' />
+    }
+  }
+
   return (
 
     <>
@@ -55,7 +78,7 @@ export default function IconChips({stageId, propertyName, handleOnSubmit}) {
 
       <Button onClick={handleClickListItem}>
       <Stack direction="row" spacing={1}>
-        <Chip icon={<FaceIcon />} label={text} color="primary" />
+        {iconWithColor()}
       </Stack>
 
 

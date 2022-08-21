@@ -6,6 +6,10 @@ import Modal from '@mui/material/Modal';
 import { Button } from '@mui/material';
 import Select from '@mui/material/Select';
 import ServiceContact from '../../../services/ServiceContact';
+import CreateNewForm from '../../UI/CreateNewForm'
+import ContactService from '../../../services/ServiceContact'
+import TextField from '@mui/material/TextField';
+import { RowStyle, Block } from './styles';
 
 const style = {
     position: 'absolute',
@@ -47,9 +51,29 @@ const AddContactModal = ({open, handleClose, handleSubmit}) => {
         
     }
 
+    const onSubmit = (data) => {
+        ContactService.create(data).then((account) => {
+            setContacts([account, ...contacts])
+        })
+        .catch((error) => {
+            console.error(error)
+        }
+        )
+    }
+    
+    const TextFieldEls = [
+        {label: 'Nombre Completo', name: 'full_name', required: true},
+        {label: 'Teléfono', name: 'phone', required: true},
+        {label: 'Email', name: 'email', required: true},    
+
+    ]
+
+
 
 
     return (
+
+        
         <Modal
         open={open}
         onClose={handleClose}
@@ -58,28 +82,61 @@ const AddContactModal = ({open, handleClose, handleSubmit}) => {
     >
         
         <Box sx={style}>
-            <InputLabel shrink htmlFor="select-multiple-native">
-            Contactos
-            </InputLabel>
-            <Select
-            multiple
-            native
-            value={selectedPersonId}
-            // @ts-ignore Typings are not considering `native`
-            onChange={handleChangeMultiple}
-            label="Native"
-            inputProps={{
-                id: 'select-multiple-native',
-            }}
-            >
-            {contacts.map((name) => (
-                <option key={name.id} value={name.id}>
-                {name.full_name}
-                </option>
-            ))}
-            </Select>
-            
-            <Button type="submit" onClick={() => handleOnClick()}>Submit</Button>
+            <RowStyle>
+
+                <Block>
+                    <h3>Contactos</h3>
+
+                    <Select
+                    multiple
+                    native
+                    value={selectedPersonId}
+                    // @ts-ignore Typings are not considering `native`
+                    onChange={handleChangeMultiple}
+                    label="Native"
+                    inputProps={{
+                        id: 'select-multiple-native',
+                    }}
+                    >
+                    {contacts.map((name) => (
+                        <option key={name.id} value={name.id}>
+                        {name.full_name}
+                        </option>
+                    ))}
+                    </Select>
+                    
+                    <Button type="submit" onClick={() => handleOnClick()}>Submit</Button>
+
+                </Block>
+
+
+                <Block>
+                    <h3>Añadir nuevo Contacto</h3>
+                    {TextFieldEls.map(el => 
+
+                        
+                    <TextField
+                        key={`${el.name}`}
+                        size="small"
+                        label={el.label} 
+                        name={el.name} 
+                        fullWidth={true} 
+                        required={el.required} 
+                        type={el.type ? el.type : 'text'}
+                        /*                 onChange={(e) => {
+                            setFormInput({...formInput, [e.target.name]: e.target.value})
+                        }} */
+                        />
+                        
+                        )}
+                    <Button type="submit" onClick={() => onSubmit()}>Submit</Button>
+
+                </Block>
+            </RowStyle>
+
+
+
+
         </Box>
     </Modal>
 

@@ -46,7 +46,6 @@ const PuntoConexionComponent = ({opportunityId}) => {
 
     const TextFieldEls = [
         {label: 'Fecha presentación', name: 'presentacionDate', type: 'date', required: false},
-        {label: 'CCAA', name: 'ccaa', type: 'text', required: false},
     
     ]
     
@@ -55,19 +54,19 @@ const PuntoConexionComponent = ({opportunityId}) => {
     ]
     
     const SelectFieldEls  = [
-/*         {label: 'Tipo oportunidad', name: 'opportunity_type_id', required: true, options: opportunityTypes.map((opportunityType) => {return {value: opportunityType.id, label: opportunityType.opportunity_type_description}})},
-        {label: 'Estado', name: 'stage_id', required: true, options: stages.map((stage) => ({value: stage.id, label: stage.stage_description}))},
+        {label: 'Distribuidora', name: 'distribuidora', required: true, options: [{value: "Endesa", label: "Endesa"}]},
+/*         {label: 'Estado', name: 'stage_id', required: true, options: stages.map((stage) => ({value: stage.id, label: stage.stage_description}))},
  */
     ]
     return (
         <div>
-            <Row key={`bonificacion-${opportunityId}`}>
+            <Row key={`punto-conexion-${opportunityId}`}>
                 <h2> Punto de Conexión </h2>
 
                 <CreateNewForm
-                key='create-bonificacion'
+                key='create-punto-conexion'
                 boton={<AddIcon/>}
-                titulo='Crear Bonificacion'
+                titulo='Crear Punto de Conexion'
                 TextFieldEls={TextFieldEls}
                 InputFileEls={InputFileEls}
                 SelectFieldEls ={SelectFieldEls}
