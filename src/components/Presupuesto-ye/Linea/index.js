@@ -33,7 +33,7 @@ const Linea = () => {
             <div class="row form-group">
                 <div class="col-6"><span id="concepto-${key}">${value.concepto} </span></div>
                     <div class="col-1">
-                        <input type="number" name="ud" onChange={onChangeUd(value.key, )} step="1" class="form-control" value="${presupuestoUd[modalidad][key].ud}" id="ud-${key}" name="ud-${key}" title="Completar" placeholder="" style="width:100%;"/>
+                        <input type="number" name="ud" onChange={onChangeUd(value.key, e)} step="1" class="form-control" value="${presupuestoUd[modalidad][key].ud}" id="ud-${key}" name="ud-${key}" title="Completar" placeholder="" style="width:100%;"/>
                     </div>
                     <div class="col-3">
                         <input type="number" step="0.01" class="form-control" value="${value.importe}" id="importe-${key}" name="importe-${key}" title="Completar" placeholder="" style="width:100%;"/>
