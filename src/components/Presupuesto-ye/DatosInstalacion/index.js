@@ -1,9 +1,9 @@
 const DatosInstalacion = () => {
 
     const input = [
-        {label: "Dirección del suministro", name="direccion-suministro"},
-        {label: "Código Postal", name="cp"},
-        {label: "Localidad", name="localidad"},
+        {label: "Dirección del suministro", name: "direccion-suministro"},
+        {label: "Código Postal", name: "cp"},
+        {label: "Localidad", name: "localidad"},
     ]
 
 

@@ -1,10 +1,10 @@
 const DatosCliente = () => {
 
     const input = [
-        {label: "Razon Social", name="razon-social"},
-        {label: "NIF", name="nif"},
-        {label: "email", name="email"},
-        {label: "Teléfono", name="telefono"},
+        {label: "Razon Social", name: "razon-social"},
+        {label: "NIF", name: "nif"},
+        {label: "email", name: "email"},
+        {label: "Teléfono", name: "telefono"},
     ]
 
 

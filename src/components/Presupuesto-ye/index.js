@@ -7,7 +7,7 @@ import DatosPago from './DatosPago'
 import PrecioEnergia from './PrecioEnergia';
 import * as Presupuesto from './Classes/Presupuesto'
 
-const Presupuesto = () => {
+const PresupuestoIndex = () => {
 
     const [ tension, setTension ] = useState({tension: 'monofasico'})
 
