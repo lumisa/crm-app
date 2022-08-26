@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-
+import { RowStyle } from './styles'
 const Linea = ({id, concepto, ud, precio}) => {
 
     const [Linea, setLinea] = useState({})
@@ -20,20 +20,13 @@ const Linea = ({id, concepto, ud, precio}) => {
     }
 
     return (
-            <div class="row form-group">
-                <div class="col-6"><span id="concepto-${key}">${value.concepto} </span>
-                    <div class="col-1">
-                        <input type="number" name="ud" onChange={onChangeUd(Linea.id, e)} step="1" class="form-control" value={Linea.ud} id="ud-${key}" title="Completar" placeholder=""/>
-                    </div>
-                    <div class="col-3">
-                        <input type="number" name="precio" step="0.01" class="form-control" value={Linea.precio} id="importe-${key}" title="Completar" placeholder=""/>
-                        </div>
-                        <div class="col-2">
-                        <input type="number" step="0.01" class="form-control" disabled value={Linea.ud * Linea.precio} id="total-${key}" name="total-${key}" title="Completar" placeholder=""º/>
-                        
-                    </div>
-                </div>
-            </div>
+
+            <RowStyle>
+                <input type="number" step="0.01" name="ud" defaultValue={ud}/>
+                <input type="number" step="0.01" name="precio" defaultValue={precio}/>
+                <input type="number" name="total" defaultValue={ud*precio}/>
+            </RowStyle>
+
     )
 }
 
