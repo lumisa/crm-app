@@ -1,15 +1,13 @@
-import Linea from './Linea'
-import Input from bootstrap
+import Lineas from './Lineas';
+
 const Presupuesto = () => {
-
-
 
     return (
         <div className="container">      
         <form enctype="multipart/form-data" action="../src/controller/autoconsumoController.php" method="POST" className="col-12" style="padding-top: 30px; padding-bottom: 30px;">
-            <Input type="hidden" id="data" name="data" value=""/>
+            <input type="hidden" id="data" name="data" value=""/>
             <input type="hidden" id="totalizadorData" name="totalizadorData" value=""/>
-            <input type="hidden" id="csvData" name="csvData" value="">
+            <input type="hidden" id="csvData" name="csvData" value=""/>
             <div className="text-center"><h2>Presupuesto Instalación paneles solares</h2></div>  
               
             <div>
@@ -30,30 +28,12 @@ const Presupuesto = () => {
                         </div>
                     </div>
     
-                    <div className="form-group col-4">
-                        <label>Tejado</label>
-                        <div className="form-check">
-                            <input className="form-check-input" type="radio" name="tejado" id="plano" value="plano" checked/>
-                            <label className="form-check-label" for="flexRadioDefault1">
-                                Plano
-                            </label>
-                        </div>
-                        <div className="form-check">
-                            <input className="form-check-input" type="radio" name="tejado" value="inclinado" id="inclinado"/>
-                            <label className="form-check-label" for="flexRadioDefault2">
-                                inclinado
-                            </label>
-                        </div>
-                    </div>
+                    
                 </div>
 
-                <Linea/>
-
+                <Lineas/>
 
                 <h4>Desglose Presupuesto</h4>
-                    
-    
-                </div>
                 <div className="row">
                     <div className="form-group col-6">
                         <label>Desglose Presupuesto</label>
@@ -84,7 +64,6 @@ const Presupuesto = () => {
                 </div>
             </div>
 
-
             <div style="padding:40px 0px">
                 <h4>Datos el cliente</h4>
                 <div className="row">
@@ -108,7 +87,6 @@ const Presupuesto = () => {
                     </div>
                 </div>
 
-
                 <h4>Datos de la Instalación</h4>
 
                 <div className="row">
@@ -124,7 +102,6 @@ const Presupuesto = () => {
                             <option value="Alameda">Alameda</option>
                             <option value="Arrabal">Arrabal</option>
                             <option value="Autopista">Autopista</option>
-
                             <option value="Barranco">Barranco</option>
                             <option value="Barriada">Barriada</option>
                             <option value="Bloque">Bloque</option>
@@ -132,7 +109,6 @@ const Presupuesto = () => {
                             <option value="Colonia">Colonia</option>
                             <option value="Callejón">Callejon</option>
                             <option value="Carril">Carril</option>
-
                             <option value="Complejo">Complejo</option>
                             <option value="Camino">Camino</option>
                             <option value="Cooperativa">Cooperativa</option>
@@ -162,7 +138,6 @@ const Presupuesto = () => {
                             <option value="Pasaje">Pasaje</option>
                             <option value="Plazoleta">Plazoleta</option>
                             <option value="Playa">Playa</option>
-
                             <option value="Rambla">Rambla</option>
                             <option value="Ronda">Ronda</option>
                             <option value="Residencial">Residencial</option>
@@ -203,9 +178,8 @@ const Presupuesto = () => {
                     </div>
                 </div>
 
-
-
                 <h4>Forma de pago</h4>
+
                 <div className="row">
                     <div className="form-group col-6">
                         <label>IVA</label>
@@ -247,15 +221,7 @@ const Presupuesto = () => {
                         <input className="form-control" type="file" id="rendimientoMensual" name="rendimientoMensual"/>
                     </div>
                 </div>
-
-                </div>
-                
-
-
-
-
-
-
+            </div>
 
           <center><input type="submit" className="btn btn-primary" value="Generar pdf"/></center>
         </form>
