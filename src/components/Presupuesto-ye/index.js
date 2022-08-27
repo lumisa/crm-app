@@ -5,7 +5,7 @@ import DatosCliente from './DatosCliente'
 import DatosInstalacion from './DatosInstalacion'
 import DatosPago from './DatosPago'
 import PrecioEnergia from './PrecioEnergia';
-import * as Presupuesto from './Classes/Presupuesto'
+import Adjuntos from './Adjuntos'
 
 const PresupuestoIndex = () => {
 
@@ -16,15 +16,6 @@ const PresupuestoIndex = () => {
         {value: "trifasico", checked: false},
     ]
 
-    const updatePresupuesto = () => {
-
-        /* presupuestoUd, update */
-
-        const presupuestoData = new Presupuesto()
-
-
-    }
-
     return (
 
         <Container>
@@ -33,7 +24,9 @@ const PresupuestoIndex = () => {
             </Header>
             <div>
                 {tensionType.map((el) => (
-                    <input type="radio" name="tension" value={el.value} checked={el.checked ? true : false}/>
+                    <>
+                        <input type="radio" name="tension" value={el.value} defaultChecked={el.checked ? true : false}/> {el.value}
+                    </>
 
                 ))}
 
@@ -57,4 +50,4 @@ const PresupuestoIndex = () => {
     )
 }
 
-export default Presupuesto;
+export default PresupuestoIndex;

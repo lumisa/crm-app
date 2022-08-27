@@ -16,7 +16,7 @@ import Auth from '../../services/ServiceAuth'
 import { Main, Page } from './styles'
 import Sidebar from '../Sidebar'
 import Parametrizable from '../Parametrizable';
-import Presupuesto from '../Presupuesto-ye';
+import PresupuestoIndex from '../Presupuesto-ye';
 function Home () {
 
 
@@ -68,7 +68,7 @@ function Home () {
           <Route path="/opportunity" element={<OpportunityList />}/>
           <Route path="/contact" element={<Contact/>}/>
           <Route path="/parametrizable" element={<Parametrizable />}/>
-          <Route path="/presupuesto" element={<Presupuesto />}/>
+          <Route path="/presupuesto" element={<PresupuestoIndex />}/>
 
         </Routes>
 

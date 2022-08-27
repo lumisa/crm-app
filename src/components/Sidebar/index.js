@@ -8,7 +8,7 @@ import ListItemText from '@mui/material/ListItemText';
 import PersonIcon from '@mui/icons-material/Person';
 import HomeIcon from '@mui/icons-material/Home';
 import { Link } from 'react-router-dom';
-import Presupuesto  from '../Presupuesto-ye';
+
 const Sidebar = () => {
 
     const menuItem = [
@@ -34,7 +34,7 @@ const Sidebar = () => {
         },
         {
             name: 'Presupuesto',
-            icon: <Presupuesto />,
+            icon: <PersonIcon />,
             link: '/presupuesto',
         }
     ]

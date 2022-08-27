@@ -2,10 +2,10 @@ const Adjuntos = () => {
 
 
 const input = [
-    {label: "Archivo CSV", name="csv"},
-    {label: "Imagen de la ubicación", name="ubicacion"},
-    {label: "Rendimiento diario", name="rendimiento-diario"},
-    {label: "Rendimiento mensual", name="rendimiento-mensual"},
+    {label: "Archivo CSV", name: "csv"},
+    {label: "Imagen de la ubicación", name: "ubicacion"},
+    {label: "Rendimiento diario", name: "rendimiento-diario"},
+    {label: "Rendimiento mensual", name: "rendimiento-mensual"},
 ]
 
 

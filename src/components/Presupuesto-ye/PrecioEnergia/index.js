@@ -5,12 +5,14 @@ const PrecioEnergia = () => {
         {label: "Precio de Compra", name: "precio-compra", value: "0.35"},
     ]
 
+    return (
+
         <>
         {input.map((el) => (
-
             <>
-                <label>{el.label}</label>
-                <input name={el.name} defaultValue={el.value}/>
+
+            <label>{el.label}</label>
+            <input name={el.name} defaultValue={el.value}/>
             </>
             ))}
         </>

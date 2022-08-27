@@ -27,7 +27,7 @@ export default class Presupuesto {
             reductionPerkW : 0.00506912442397001,
         }
 
-        this.kW = this.presupuestoUd.basic.modulos.ud * this.modulo.kW,
+        this.kW = this.presupuestoUd.basic.modulos.ud * this.modulo.kW
 
 
         this.modulos = {
