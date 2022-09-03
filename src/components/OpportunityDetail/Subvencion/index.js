@@ -82,8 +82,15 @@ const SubvencionComponent = ({opportunityId}) => {
                     ccaa={subvencion.ccaa}
                     tramiteNumber={subvencion.tramite_number}
                     opportunityId={subvencion.opportunity_id}
+                    id={subvencion.id}
+                    formulario={subvencion.formulario}
+                    autorizacion_file={subvencion.autorizacion_file}
                     presentacionDate={subvencion.presentacionDate}
                     updateSubvencion={(propertyName, value) => updateSubvencion(subvencion.id, propertyName, value)}
+                    declaracion_file={subvencion.declaracion_file}
+                    acreditacion_file={subvencion.acreditacion_file}
+                    acuso_recibo_file={subvencion.acuso_recibo_file}
+            
                     />
                     
                     

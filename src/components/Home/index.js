@@ -17,6 +17,7 @@ import { Main, Page } from './styles'
 import Sidebar from '../Sidebar'
 import Parametrizable from '../Parametrizable';
 import PresupuestoIndex from '../Presupuesto-ye';
+import SubvencionesList from '../SubvencionList';
 function Home () {
 
 
@@ -68,6 +69,7 @@ function Home () {
           <Route path="/opportunity" element={<OpportunityList />}/>
           <Route path="/contact" element={<Contact/>}/>
           <Route path="/parametrizable" element={<Parametrizable />}/>
+          <Route path="/subvencion" element={<SubvencionesList />}/>
           <Route path="/presupuesto" element={<PresupuestoIndex />}/>
 
         </Routes>

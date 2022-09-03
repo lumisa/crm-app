@@ -33,6 +33,11 @@ const Sidebar = () => {
             link: '/opportunity',
         },
         {
+            name: 'Subvenciones',
+            icon: <PersonIcon />,
+            link: '/subvencion',
+        },
+        {
             name: 'Presupuesto',
             icon: <PersonIcon />,
             link: '/presupuesto',

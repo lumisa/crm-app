@@ -15,9 +15,9 @@ export const Main = styled.div`
     display: grid;
     gap: 2rem;
     grid-template: 
-    "header header header"
-    "image panel2 panel1" 300px
-    "panel0 panel2 panel1" 900px / 1fr 1fr 1fr
+    "header header header header"
+    "image panel2 panel3 panel1" 300px
+    "panel0 panel2 panel3 panel1" 900px / 1fr 1fr 1fr 1fr
     ;
 
 `

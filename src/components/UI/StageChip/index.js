@@ -6,29 +6,49 @@ import { useState, useEffect } from 'react';
 import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import Button from '@mui/material/Button';
+import Stage from '../../../services/ServiceStage'
+import CancelIcon from '@mui/icons-material/Cancel';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 
+const expression = [
+  {description: 'rechazado', color: 'error', icon: <CancelIcon />},
+  {description: 'aceptado', color: 'success', icon: <CheckCircleIcon />},
+]
 
+export default function IconChips({stageId, propertyName, handleOnSubmit}) {
+  const [stages, setStages] = useState([])
 
-export default function IconChips({stageId, options, propertyName, handleOnSubmit}) {
-    const [anchorEl, setAnchorEl] = useState(null);
-    const [text, setText ] = useState('')
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [text, setText ] = useState('')
   const [selectedIndex, setSelectedIndex] = useState(1);
+  const [attr, setAttr] = useState({})
+
   const open = Boolean(anchorEl);
-  const [optionsList, setOptions] = useState([]);
   
   useEffect(() => {
-    const selectedDescription = options.map((el) => el.id === stageId && el.stage_description)
-    setOptions(options);
-    setText(selectedDescription)
+    
+    Stage.getStages()
+    .then((stages) => {
+      const selectedDescription = stages.filter((el) => el.id === stageId)[0].stage_description
+        setStages(stages)
+        console.log(selectedDescription)
+        setText(selectedDescription)
+        const getAttr = expression.filter((el) => el.description === selectedDescription)[0]
+        setAttr(getAttr)
+    })
+    .catch((err) => {
+        console.error(err)
+    })
+
   }
-  , [options]);
+  , [stageId]);
   
   const handleClickListItem = (event) => {
     setAnchorEl(event.currentTarget);
   };
   
   const handleMenuItemClick = (optionId) => {
-    const selectedDescription = options.map((el) => el.id === optionId && el.stage_description)
+    const selectedDescription = stages.map((el) => el.id === optionId && el.stage_description)
     setText(selectedDescription)
     handleOnSubmit(propertyName, {value: optionId});
     setAnchorEl(null);
@@ -38,6 +58,19 @@ export default function IconChips({stageId, options, propertyName, handleOnSubmi
     setAnchorEl(null);
   };
 
+
+
+  const iconWithColor = () => {
+    console.log(attr)
+
+    if (attr) {
+      return <Chip icon={attr.icon} label={text} color={attr.color} />
+    }
+    else {
+      return <Chip icon={<FaceIcon/>} label={text} color='primary' />
+    }
+  }
+
   return (
 
     <>
@@ -45,7 +78,7 @@ export default function IconChips({stageId, options, propertyName, handleOnSubmi
 
       <Button onClick={handleClickListItem}>
       <Stack direction="row" spacing={1}>
-        <Chip icon={<FaceIcon />} label={text} color="primary" />
+        {iconWithColor()}
       </Stack>
 
 
@@ -60,7 +93,7 @@ export default function IconChips({stageId, options, propertyName, handleOnSubmi
           role: 'listbox',
         }}
       >
-        {optionsList.map((option, index) => (
+        {stages.map((option, index) => (
           <MenuItem
             key={option.id}
             disabled={index === 0}
